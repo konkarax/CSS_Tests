@@ -1,0 +1,41 @@
+[
+  {
+    "_id": "1",
+    "type": "WasteContainer",
+    "location": {
+      "coordinates": [
+        38.246658,
+        21.736345
+      ]
+    },
+    "binMaxLoad": 75,
+    "binLoad": 60,
+    "humidity":50
+  },
+  {
+    "_id": "2",
+    "type": "WasteContainer",
+    "location": {
+      "coordinates": [
+        38.246339,
+        21.734346
+      ]
+    },
+    "binMaxLoad": 75,
+    "binLoad": 10,
+    "humidity":50
+  },
+  {
+    "_id": "3",
+    "type": "WasteContainer",
+    "location": {
+      "coordinates": [
+        38.246215, 
+        21.735795
+      ]
+    },
+    "binMaxLoad": 75,
+    "binLoad": 20,
+    "humidity":50
+  }
+]
