@@ -1,8 +1,13 @@
-function LiveUpdate(){
+var marker=[];
+var tr_marker=[];
+var infowindow=[]; 
+var tr_infowindow=[];
+var bin;
+
+function LiveUpdate(init){
     //show bins
     fetch("http://localhost:5000/get_bins/").then(response=>response.json()).then(bin=>{
-      var infowindow=[];
-      for (let i=0;i<bin.length;i++){
+      for (var i=0;i<bin.length;i++){
         var x=bin[i].location.coordinates[0]
         var y=bin[i].location.coordinates[1]
     
@@ -12,73 +17,97 @@ function LiveUpdate(){
         if(bin[i].binLoad>80) myIcon="/icons/red_bin.png";
         if(bin[i].binLoad<80) myIcon="/icons/orange_bin.png";
         if(bin[i].binLoad<30) myIcon="/icons/green_bin.png";
-            
-        marker[i]=new google.maps.Marker({position: myLatlng,icon:myIcon,size:new google.maps.Size(5,8)});
     
-        infowindow[i] = new google.maps.InfoWindow({content:"Bin Id: "+String(bin[i]._id)+ "Bin Load:"+String(bin[i].binLoad)});
+        
+        if (init==true){
+          marker[i]=new google.maps.Marker({
+            position: myLatlng,
+            icon:myIcon,size:new google.maps.Size(5,8), 
+            map:map}); 
+
     
-        google.maps.event.addListener(marker[i], 'click', function() {
-          infowindow[i].open(map,marker[i]);
-        });  
-    
-        marker[i].setMap(map);
+          
+        }
+        else{
+          marker[i].setIcon(myIcon);
+        
+        } 
+        
+        infowindow[i] = new google.maps.InfoWindow({});
+        const text = "Bin Id: "+String(bin[i]._id)+ "Bin Load:"+String(bin[i].binLoad)
+          marker[i].addListener("click", () =>{
+            infowindow[i].setContent(text);
+            infowindow[i].open(map,marker[i]);
+          });
+        
+        /*marker[i].addListener('click', ()=>{
+          infowindow[i].open(marker[i].getMap(),marker[i]);
+        });*/ 
+
       }
     })
 
 
     //show trucks
     fetch("http://localhost:5000/get_trucks/").then(response=>response.json()).then(truck=>{
-      var infowindow=[];
-      for (let i=0;i<truck.length;i++){
-        var x=truck[i].pos_x
-        var y=truck[i].pos_y
+      
+      for (var i=0;i<truck.length;i++){
+        var x,y;
+        if (init==true){
+          x=truck[i].start_x;
+          y=truck[i].start_y;
+        }
+        else{
+          x=truck[i].pos_x;
+          y=truck[i].pos_y;
+        }
+        
+        
+        
         var truckLatlng = new google.maps.LatLng(x,y);
 
         const truckIcon="/icons/truck.png";  
+        
+        if (init==true){
+          tr_marker[i]=new google.maps.Marker({position: truckLatlng,icon:truckIcon,size:new google.maps.Size(5,8)});
+          tr_marker[i].setMap(map);
 
-        tr_marker[i]=new google.maps.Marker({position: truckLatlng,icon:truckIcon,size:new google.maps.Size(5,8)});
+          tr_infowindow[i]= new google.maps.InfoWindow({content:"Truck Load:"+String(truck[i].truckLoad)});
+          
 
-        infowindow[i]= new google.maps.InfoWindow({content:"Truck Load:"+String(truck[i].truckLoad)});
-        google.maps.event.addListener(tr_marker, 'click', function() {
-            infowindow[i].open(map,tr_marker);
-          });  
-        tr_marker[i].setMap(map);
+        }
+        else{
+          google.maps.event.addListener(tr_marker[i], 'click', function() {tr_infowindow[i].open(map,tr_marker[i]);});
+          tr_marker[i].setPosition(truckLatlng);
+        } 
+        
+        
       }
     })
-    console.log("fetch");5
+    console.log("fetch");
+    setTimeout(LiveUpdate,3000,false);
+    return;
 }
 //map options 
 var options={
   center:{
-            lat:38.246291,
-            lng:21.735188
+            lat:38.25495,
+            lng:21.74829
         },
         zoom: 17,
-        //mapTypeId: google.maps.MapTypeId.ROADMAP,
         mapTypeControl:false
-    },
-    element = document.getElementById('map-canvas');
+    }
 
-    //map
-    map = new google.maps.Map(element,options);
-    var marker= [];
-    var tr_marker = [];
-    var temp_mar = [];
-    var temp_tr = [];
+element = document.getElementById('map-canvas');
 
-    LiveUpdate();
+//map
+map = new google.maps.Map(element,options);
 
-    setInterval(function(){
-      for (var i=0; i<tr_marker.length;i++){
-        temp_tr[i]=tr_marker[i];
-        tr_marker[i].setMap(null);
-      }
-      for (i=0; i<marker.length;i++){
-        temp_mar[i]=marker[i];
-        marker[i].setMap(null);
-      }
-      
-      LiveUpdate();
-      
-    },3000);
-    console.log("render done");
+marker= [];
+tr_marker = [];
+infowindow=[];
+tr_infowindow=[];
+
+setTimeout(LiveUpdate,6000,true);
+
+console.log("render done");
