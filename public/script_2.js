@@ -2,11 +2,11 @@ var marker=[];
 var tr_marker=[];
 var infowindow=[]; 
 var tr_infowindow=[];
-var bin;
+var bin=[];
 
-function LiveUpdate(init){
+async function LiveUpdate(init){
     //show bins
-    fetch("http://localhost:5000/get_bins/").then(response=>response.json()).then(bin=>{
+    await fetch("http://localhost:5000/get_bins/").then(response=>response.json()).then(bin=>{
       for (var i=0;i<bin.length;i++){
         var x=bin[i].location.coordinates[0]
         var y=bin[i].location.coordinates[1]
@@ -24,32 +24,28 @@ function LiveUpdate(init){
             position: myLatlng,
             icon:myIcon,size:new google.maps.Size(5,8), 
             map:map}); 
-
-    
-          
         }
         else{
           marker[i].setIcon(myIcon);
-        
         } 
         
-        infowindow[i] = new google.maps.InfoWindow({});
-        const text = "Bin Id: "+String(bin[i]._id)+ "Bin Load:"+String(bin[i].binLoad)
-          marker[i].addListener("click", () =>{
-            infowindow[i].setContent(text);
-            infowindow[i].open(map,marker[i]);
-          });
-        
-        /*marker[i].addListener('click', ()=>{
-          infowindow[i].open(marker[i].getMap(),marker[i]);
-        });*/ 
+        infowindow[i] = new google.maps.InfoWindow({
+          content:"Bin Id: "+String(bin[i]._id)+ "Bin Load:"+String(bin[i].binLoad)
+        });
 
       }
     })
 
+    for (let i=0;i<marker.length;i++){
+      google.maps.event.addListener(marker[i],"click", () =>{
+        infowindow[i].close();
+        infowindow[i].open(map,marker[i]);
+      });
+    }
+
 
     //show trucks
-    fetch("http://localhost:5000/get_trucks/").then(response=>response.json()).then(truck=>{
+    await fetch("http://localhost:5000/get_trucks/").then(response=>response.json()).then(truck=>{
       
       for (var i=0;i<truck.length;i++){
         var x,y;
@@ -62,8 +58,6 @@ function LiveUpdate(init){
           y=truck[i].pos_y;
         }
         
-        
-        
         var truckLatlng = new google.maps.LatLng(x,y);
 
         const truckIcon="/icons/truck.png";  
@@ -73,17 +67,21 @@ function LiveUpdate(init){
           tr_marker[i].setMap(map);
 
           tr_infowindow[i]= new google.maps.InfoWindow({content:"Truck Load:"+String(truck[i].truckLoad)});
-          
-
         }
         else{
-          google.maps.event.addListener(tr_marker[i], 'click', function() {tr_infowindow[i].open(map,tr_marker[i]);});
           tr_marker[i].setPosition(truckLatlng);
         } 
         
         
       }
     })
+
+    for (let i=0;i<tr_marker.length;i++){
+      google.maps.event.addListener(tr_marker[i],"click", () =>{
+        tr_infowindow[i].close();
+        tr_infowindow[i].open(map,tr_marker[i]);
+      });
+    }
     console.log("fetch");
     setTimeout(LiveUpdate,3000,false);
     return;
@@ -108,6 +106,7 @@ tr_marker = [];
 infowindow=[];
 tr_infowindow=[];
 
-setTimeout(LiveUpdate,6000,true);
+setTimeout(LiveUpdate,0000,true);
 
 console.log("render done");
+

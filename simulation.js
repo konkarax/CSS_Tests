@@ -7,34 +7,37 @@ var conn,db;
 var collection_trucks,data_trucks;
 var collection_bins,data_bins;
 
+var idx=0;
+
+class route{
+    constructor(num){
+        this.num=num;
+        this.loopInterval = null;
+        this.target_list = null;
+        idx=0;
+    }
+
+    async initialize(){
+        this.target_list = await initialize_map(this.num);
+    }
+
+    async startLoop(){
+        this.loopInterval = setInterval(move_truck,3000,this.target_list);
+    }
+
+    endLoop(){
+        clearInterval(this.loopInterval);
+    }
+}
 
 //data.updateOne({_id:'1'},{$inc:{truckLoad:1}})
 
-async function updateTruck(num){
-    //Connection to db
-    conn = await client.connect();
-    db = conn.db("waste_managment");
-
-    collection_trucks = db.collection('trucks');
-    data_trucks = await collection_trucks.find({}).toArray();
-
-    collection_bins = db.collection('bins');
-    data_bins = await collection_bins.find({}).toArray();
-
-
-    const target_list = await initialize_map(num);
-
-    //const data = await collection.find({$expr:{$gt:["truckLoad", "truckMaxLoad"]}}).toArray();
-
-    setTimeout(move_truck,3000,target_list,0);
-}
 
 
 var STEP = 100.0/111139.0;
-async function move_truck(target_list,idx){
-    console.log(idx);
+async function move_truck(target_list){
+    
     const target = target_list[idx];
-
     data_trucks = await collection_trucks.find({}).toArray();
 
     const pos_x = data_trucks[0].pos_x;
@@ -49,18 +52,16 @@ async function move_truck(target_list,idx){
         const dx = x_total*STEP/dist;
         const dy = y_total*STEP/dist;
         await collection_trucks.updateOne({_id:1},{$inc:{'pos_x':dx,'pos_y':dy}});
-        setTimeout(move_truck,3000,target_list,idx);
+        //setTimeout(move_truck,3000,target_list,idx);
     }
     else{
         console.log("reached");
         await collection_trucks.updateOne({_id:1},{$set:{'pos_x':target[0],'pos_y':target[1]}});
-        if (target[2]==0){
-            setTimeout(move_truck,3000,target_list,(idx+1)%target_list.length);
-        }
-        else{
+
+        if (target[2]!=0){
             setTimeout(update_bin,3000,target_list,idx);
-            setTimeout(move_truck,6000,target_list,(idx+1)%target_list.length);
         }
+        idx = (idx+1)%target_list.length;
         
     }
 }
@@ -71,6 +72,16 @@ async function update_bin(target_list,idx){
 
 
 async function initialize_map(scenario){
+    conn = await client.connect();
+    db = conn.db("waste_managment");
+
+    collection_trucks = db.collection('trucks');
+    data_trucks = await collection_trucks.find({}).toArray();
+
+    collection_bins = db.collection('bins');
+    data_bins = await collection_bins.find({}).toArray();
+
+
     var scenario
     if (scenario==1){
         scenario = conn.db("scenario_1");
@@ -102,4 +113,4 @@ async function initialize_map(scenario){
     return scenario_truck_data[0].route;
 }
 
-module.exports = updateTruck;
+module.exports = route;
