@@ -1,0 +1,14 @@
+[
+  {
+    "_id": 1,
+    "type": "Truck",
+    "location": {
+      "coordinates": [
+        38.246358,
+        21.735881
+      ]
+    },
+    "truckMaxLoad": 3000,
+    "truckLoad": 60
+  }
+]

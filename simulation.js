@@ -9,7 +9,7 @@ var collection_bins,data_bins;
 
 var idx=0;
 
-class route{
+class Route{
     constructor(num){
         this.num=num;
         this.loopInterval = null;
@@ -34,7 +34,7 @@ class route{
 
 
 
-var STEP = 100.0/111139.0;
+var STEP = 200.0/111139.0;
 async function move_truck(target_list){
     
     const target = target_list[idx];
@@ -47,27 +47,31 @@ async function move_truck(target_list){
     const y_total = target[1]-pos_y;
 
     const dist = Math.sqrt(Math.pow(x_total,2)+Math.pow(y_total,2));
+    console.log(dist)
 
     if (dist>STEP){
         const dx = x_total*STEP/dist;
         const dy = y_total*STEP/dist;
         await collection_trucks.updateOne({_id:1},{$inc:{'pos_x':dx,'pos_y':dy}});
-        //setTimeout(move_truck,3000,target_list,idx);
+
     }
     else{
         console.log("reached");
         await collection_trucks.updateOne({_id:1},{$set:{'pos_x':target[0],'pos_y':target[1]}});
 
         if (target[2]!=0){
-            setTimeout(update_bin,3000,target_list,idx);
+           console.log("trash start")
+           await new Promise(r => setTimeout(r, 3000));
+           await collection_bins.updateOne({_id:String(target_list[idx][2])},{$set:{binLoad:0}});
+           console.log("trash finish")
         }
-        idx = (idx+1)%target_list.length;
+
+        if (dist!=0){
+            idx = (idx+1)%target_list.length;
+        }
+        
         
     }
-}
-
-async function update_bin(target_list,idx){
-    await collection_bins.updateOne({_id:String(target_list[idx][2])},{$set:{binLoad:0}});
 }
 
 
@@ -81,12 +85,11 @@ async function initialize_map(scenario){
     collection_bins = db.collection('bins');
     data_bins = await collection_bins.find({}).toArray();
 
-
     var scenario
-    if (scenario==1){
+    if (scenario=='1'){
         scenario = conn.db("scenario_1");
     }
-    else if (scenario==2){
+    else if (scenario=='2'){
         scenario = conn.db("scenario_2");
     }
 
@@ -113,4 +116,4 @@ async function initialize_map(scenario){
     return scenario_truck_data[0].route;
 }
 
-module.exports = route;
+module.exports = Route;

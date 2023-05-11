@@ -1,9 +1,3 @@
-var marker=[];
-var tr_marker=[];
-var infowindow=[]; 
-var tr_infowindow=[];
-var bin=[];
-
 async function LiveUpdate(init){
     //show bins
     await fetch("http://localhost:5000/get_bins/").then(response=>response.json()).then(bin=>{
@@ -30,7 +24,7 @@ async function LiveUpdate(init){
         } 
         
         infowindow[i] = new google.maps.InfoWindow({
-          content:"Bin Id: "+String(bin[i]._id)+ "Bin Load:"+String(bin[i].binLoad)
+          content:"Bin Id: "+String(bin[i]._id)+ " Bin Load:"+String(bin[i].binLoad)
         });
 
       }
@@ -101,12 +95,13 @@ element = document.getElementById('map-canvas');
 //map
 map = new google.maps.Map(element,options);
 
-marker= [];
-tr_marker = [];
-infowindow=[];
-tr_infowindow=[];
+var marker=[];
+var tr_marker=[];
+var infowindow=[]; 
+var tr_infowindow=[];
+var bin=[];
 
-setTimeout(LiveUpdate,0000,true);
+LiveUpdate(true);
 
 console.log("render done");
 

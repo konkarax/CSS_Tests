@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const cors= require('cors');
-const route = require('./simulation');
+const Route = require('./simulation');
 //import process from 'node:process';
 
 const {MongoClient} = require('mongodb')
@@ -9,8 +9,6 @@ const url="mongodb+srv://grt2000:grt2000st3@cluster0.4px4edr.mongodb.net/test";
 const client=new MongoClient(url);
 
 const app = express();
-
-app.use(cors());
 
 
 
@@ -37,7 +35,7 @@ app.get('/', (res,resp)=>{
     resp.sendFile(publicPath+"/index.html");  
 });
 
-var new_request,old_request;
+var new_request;
 app.get('/map', async (req, res) => {
     const publicPath = path.join(__dirname,"public");
     app.use(express.static(publicPath));
@@ -46,7 +44,7 @@ app.get('/map', async (req, res) => {
         new_request.endLoop();
     }
 
-    new_request=new route(1);
+    new_request=new Route(req.query.id);
     await new_request.initialize();
 
     res.sendFile(publicPath+"/index.html");
@@ -56,13 +54,3 @@ app.get('/map', async (req, res) => {
 
 
 app.listen(5000);
-
-/*
-process.on('exit', () => {
-    require('child_process').spawn(process.argv.shift(), process.argv, {
-      cwd: process.cwd(),
-      detached: true,
-      stdio: 'inherit'
-    });
-  });
-  process.exit();*/
