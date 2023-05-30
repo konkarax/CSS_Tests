@@ -43,7 +43,6 @@ app.get('/map', async (req, res) => {
     if(new_request){
         new_request.endLoop();
     }
-
     new_request=new Route(req.query.id);
     await new_request.initialize();
 

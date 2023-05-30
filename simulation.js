@@ -48,8 +48,9 @@ async function move_truck(target_list){
 
     const dist = Math.sqrt(Math.pow(x_total,2)+Math.pow(y_total,2));
     console.log(dist)
+    if (dist==0) return;
 
-    if (dist>STEP){
+    if (dist>STEP+0.0001){
         const dx = x_total*STEP/dist;
         const dy = y_total*STEP/dist;
         await collection_trucks.updateOne({_id:1},{$inc:{'pos_x':dx,'pos_y':dy}});
@@ -59,16 +60,23 @@ async function move_truck(target_list){
         console.log("reached");
         await collection_trucks.updateOne({_id:1},{$set:{'pos_x':target[0],'pos_y':target[1]}});
 
-        if (target[2]!=0){
-           console.log("trash start")
-           await new Promise(r => setTimeout(r, 3000));
-           await collection_bins.updateOne({_id:String(target_list[idx][2])},{$set:{binLoad:0}});
-           console.log("trash finish")
+        if (target[2]>0){
+            await new Promise(r => setTimeout(r, 3000));
+            const bin_info = await collection_bins.aggregate([
+                {$match:{_id:String(target_list[idx][2])}},
+                {$project:{_id:1,binLoad:1}}]).toArray();
+            const bin_id = bin_info[0]._id;
+            const bin_load = bin_info[0].binLoad;
+            await collection_bins.updateOne({_id:bin_id},{$set:{binLoad:0}});
+            await collection_trucks.updateOne({_id:1},{$inc:{truckLoad:bin_load}});
+        }
+        else if (target[2]==-1){
+            console.log("HQ");
+            await collection_trucks.updateOne({_id:1},{$set:{truckLoad:0}});
+
         }
 
-        if (dist!=0){
-            idx = (idx+1)%target_list.length;
-        }
+        idx = (idx+1)%target_list.length;
         
         
     }
@@ -85,24 +93,31 @@ async function initialize_map(scenario){
     collection_bins = db.collection('bins');
     data_bins = await collection_bins.find({}).toArray();
 
-    var scenario
     if (scenario=='1'){
         scenario = conn.db("scenario_1");
     }
     else if (scenario=='2'){
         scenario = conn.db("scenario_2");
     }
+    else if(scenario=='3'){
+        scenario = conn.db("scenario_3");
+    }
 
     const scenario_truck = scenario.collection("trucks")
     const scenario_truck_data = await scenario_truck.find({}).toArray();
 
-    await collection_trucks.updateOne({_id:1},{$set:{'pos_x':scenario_truck_data[0].start_x,'pos_y':scenario_truck_data[0].start_y}})
+    collection_trucks.deleteMany({});
+    await collection_trucks.insertMany(scenario_truck_data);
+    //await collection_trucks.updateOne({_id:1},{$set:{'pos_x':scenario_truck_data[0].start_x,'pos_y':scenario_truck_data[0].start_y}})
 
     const scenario_bins = scenario.collection("bins")
     const scenario_bins_data = await scenario_bins.find({}).toArray();
     
     collection_bins.deleteMany({});
+    await collection_bins.insertMany(scenario_bins_data);
+    
     var i;
+    /*
     for (i=0;i<scenario_bins_data.length;i++){
         await collection_bins.insertOne({
             _id:scenario_bins_data[i]._id,
@@ -110,7 +125,7 @@ async function initialize_map(scenario){
             location:scenario_bins_data[i].location,
             binMaxLoad:scenario_bins_data[i].binMaxLoad,
             binLoad:scenario_bins_data[i].binLoad});
-    }
+    }*/
 
     console.log("initialed");
     return scenario_truck_data[0].route;

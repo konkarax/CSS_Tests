@@ -64,6 +64,7 @@ async function LiveUpdate(init){
         }
         else{
           tr_marker[i].setPosition(truckLatlng);
+          tr_infowindow[i].setContent("Truck Load:"+String(truck[i].truckLoad))
         } 
         
         
