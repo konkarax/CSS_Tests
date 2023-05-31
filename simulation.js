@@ -33,8 +33,6 @@ class Route{
     }
 }
 
-//data.updateOne({_id:'1'},{$inc:{truckLoad:1}})
-
 
 
 var STEP = 200.0/111139.0;
