@@ -8,9 +8,10 @@ async function LiveUpdate(init){
         var myLatlng = new google.maps.LatLng(x,y);
     
         var myIcon;
-        if(bin[i].binLoad>80) myIcon="/icons/red_bin.png";
-        if(bin[i].binLoad<80) myIcon="/icons/orange_bin.png";
-        if(bin[i].binLoad<30) myIcon="/icons/green_bin.png";
+        var fill_level = 100*bin[i].binLoad/bin[i].binMaxLoad;
+        if(fill_level>80) myIcon="/icons/red_bin.png";
+        if(fill_level<=80) myIcon="/icons/orange_bin.png";
+        if(fill_level<40) myIcon="/icons/green_bin.png";
     
         
         if (init==true){
