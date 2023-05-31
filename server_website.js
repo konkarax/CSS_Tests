@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const cors= require('cors');
+// const cors= require('cors');
 const Route = require('./simulation');
 //import process from 'node:process';
 
