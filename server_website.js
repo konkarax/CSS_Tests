@@ -1,55 +1,40 @@
 const express = require('express');
-const path = require('path');
-// const cors= require('cors');
-const Route = require('./simulation');
-//import process from 'node:process';
+const router = require('./routes.js')
+const session = require('express-session')
+const { engine } = require('express-handlebars');
+// const createMemoryStore = ('memorystore')
 
-const {MongoClient} = require('mongodb')
-const url="mongodb+srv://grt2000:grt2000st3@cluster0.4px4edr.mongodb.net/test";
-const client=new MongoClient(url);
+
+// const MemoryStore = createMemoryStore(session)
+
+
+// const WasteManagementSession = session({
+//     secret: process.env.SESSION_SECRET || '05afd00f3d330e4e1c10ca0227de6c29241dd2aa7495601ab53354722f5558ca',
+//     store: new MemoryStore({ checkPeriod: 86400 * 1000 }), //ana 24 wres o server mas tha svinei tis sinedries pou exoun liksei
+//     //(an leitourgei 24 wres)
+//     resave: false,
+//     saveUninitialized: false,
+//     name: "HotelRes-sid", // an den to orisoume connect.sid = onoma sto cookie wste na isxuei gia auth thn efarmogh tou hostname
+//     cookie: {
+//         maxAge: 1000 * 60 * 20 // 20 λεπτά
+//     }
+// });
+
 
 const app = express();
+const PORT = process.env.PORT || 5000;
+//sessions
+// app.use(WasteManagementSession);
+
+//static files
+app.use(express.static("public"));
+//handlebars
+app.use(express.urlencoded({extended:false}));
+app.engine(".hbs", engine({extname:".hbs"}));
+app.set("view engine",".hbs");
 
 
-
-app.get('/get_bins',async (res,resp)=>{
-    let result= await client.connect();
-    let db = result.db("waste_managment");
-    let data =  db.collection('bins');
-    data = await data.find().toArray();
-    resp.send(data);
-})
-
-app.get('/get_trucks',async (res,resp)=>{
-    let result= await client.connect();
-    let db = result.db("waste_managment");
-    let data =  db.collection('trucks');
-    data = await data.find().toArray();
-    resp.send(data);
-})
+app.use("/",router)
 
 
-app.get('/', (res,resp)=>{
-    const publicPath = path.join(__dirname,"public");
-    app.use(express.static(publicPath));
-    resp.sendFile(publicPath+"/index.html");  
-});
-
-var new_request;
-app.get('/map', async (req, res) => {
-    const publicPath = path.join(__dirname,"public");
-    app.use(express.static(publicPath));
-
-    if(new_request){
-        new_request.endLoop();
-    }
-    new_request=new Route(req.query.id);
-    await new_request.initialize();
-
-    res.sendFile(publicPath+"/index.html");
-    
-    new_request.startLoop();  
-});
-
-
-app.listen(5000);
+app.listen(PORT, console.log(`Server started on port ${PORT}`));
