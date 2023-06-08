@@ -1,0 +1,12 @@
+/* to antistoixo styles.css me <link rel="stylesheet" type="text/css" href="style.css">*/
+html{
+    height:100%;
+}
+body{
+    height:100%;
+    padding:10px;
+    margin:0;
+}
+#map-canvas{
+    height:90%;
+}
