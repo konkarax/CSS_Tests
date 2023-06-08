@@ -8,7 +8,6 @@ var collection_trucks,data_trucks;
 var collection_bins,data_bins;
 
 var bins_list=[];
-var bins_inc=[];
 
 var idx=0;
 
@@ -65,12 +64,16 @@ async function move_truck(target_list){
             var i;
             for (i=0;i<bins_list.length;i++){
                 const bin_info = await collection_bins.aggregate([
+                    {$match:{_id:String(bins_list[i])}},
                     {$project:{_id:1,binLoad:1,binMaxLoad:1}}
                 ]).toArray();
-
-                if (bin_info[0].binLoad+bins_inc[i]<bin_info[0].binMaxLoad){
-                    await collection_bins.updateOne({_id:String(bins_list[i])},{$inc:{'binLoad':bins_inc[i]}});
-                }                
+                const bins_inc = parseInt(Math.random() * 4 +5);
+                if (bin_info[0].binLoad+bins_inc<bin_info[0].binMaxLoad){
+                    await collection_bins.updateOne({_id:String(bins_list[i])},{$inc:{'binLoad':bins_inc}});
+                }
+                else{
+                    await collection_bins.updateOne({_id:String(bins_list[i])},{$set:{'binLoad':bin_info[0].binMaxLoad}});
+                }            
             }
             
 
@@ -130,6 +133,7 @@ async function initialize_map(scenario){
     await collection_bins.insertMany(scenario_bins_data);
 
     var i;
+    bin_num=[];
     for (i=0;i<scenario_truck_data[0].route.length;i++){
         const bin_num=scenario_truck_data[0].route[i][2];
         if (bin_num>0){
@@ -137,14 +141,7 @@ async function initialize_map(scenario){
         }
     }
 
-    for (i=0;i<bins_list.length;i++){
-        const bin_info = await scenario_bins.aggregate([
-            {$match:{_id:String(bins_list[i])}},
-            {$project:{_id:1,binLoad:1,binMaxLoad:1}}]).toArray();
-        bins_inc.push(bin_info[0].binLoad/bins_list.length);
-    }
 
-    console.log(bins_inc);
     console.log(bins_list);
 
     console.log("initialed");
