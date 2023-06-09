@@ -170,46 +170,55 @@ router.get("/profile",
 
 
 //----------------Scenarios----------------//
-router.get('/get_bins',async (res,resp)=>{
+
+router.get('/scenario1',
+    RoutesController.getScenario,
+    async (req,res)=>{
+        if(new_request){
+            new_request.endLoop();
+        }
+        new_request=new Route(req.query.id);
+        await new_request.initialize();
+    
+        
+        new_request.startLoop();  
+        res.render("scenario1");
+})
+
+router.get('/get_bins',async (req,res)=>{
     let result= await client.connect();
     let db = result.db("waste_managment");
     let data =  db.collection('bins');
     data = await data.find().toArray();
-    resp.send(data);
+    res.send(data);
 })
 
-router.get('/get_trucks',async (res,resp)=>{
+router.get('/get_trucks',async (req,res)=>{
     let result= await client.connect();
     let db = result.db("waste_managment");
     let data =  db.collection('trucks');
     data = await data.find().toArray();
-    resp.send(data);
+    res.send(data);
 })
 
 
-// router.get('/', (res,resp)=>{
-//     const publicPath = path.join(__dirname,"public");
-//     router.use(express.static(publicPath));
-//     resp.sendFile(publicPath+"/index.html");  
-//      res.render("home")
-// });
 
 var new_request;
-// router.get('/map', async (req, res) => {
-//     const publicPath = path.join(__dirname,"public");
-//     router.use(express.static(publicPath));
+router.get('/map', async (req, res) => {
+    const publicPath = path.join(__dirname,"public");
+    router.use(express.static(publicPath));
 
-//     if(new_request){
-//         new_request.endLoop();
-//     }
-//     new_request=new Route(req.query.id);
-//     await new_request.initialize();
+    if(new_request){
+        new_request.endLoop();
+    }
+    new_request=new Route(req.query.id);
+    await new_request.initialize();
 
-//     // res.sendFile(publicPath+"/index.html");
-//     // res.render("home")
+    // res.sendFile(publicPath+"/index.html");
+    // res.render("home")
     
-//     new_request.startLoop();  
-// });
+    new_request.startLoop();  
+});
 
 
 

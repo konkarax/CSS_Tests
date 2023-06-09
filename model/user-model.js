@@ -2,7 +2,7 @@ const {MongoClient} = require('mongodb')
 const url="mongodb+srv://grt2000:grt2000st3@cluster0.4px4edr.mongodb.net/test";
 const client=new MongoClient(url);
 
-const bcrypt = require ("bcrypt")
+
 
 async function login(username,password){
     const conn = await client.connect();

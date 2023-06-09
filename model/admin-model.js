@@ -4,3 +4,8 @@ const client=new MongoClient(url);
 
 // const conn = await client.connect();
 // const db = conn.db("waste_managment");
+
+
+
+
+module.exports =  { login}
