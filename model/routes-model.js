@@ -67,16 +67,20 @@ async function moveTruck(target_list){
     
     console.log("target_list",target_list)
     const target = target_list[idx];
+    // console.log("target-idx",target)
     data_trucks = await collection_trucks.find({}).toArray();
 
     const pos_x = data_trucks[0].pos_x;
     const pos_y = data_trucks[0].pos_y;
-
+    
+    console.log("target",target)
+    console.log("target[0], pos_x: ",target[0],pos_x)
     const x_total = target[0]-pos_x;
     const y_total = target[1]-pos_y;
+    console.log("x_total",x_total)
 
     const dist = Math.sqrt(Math.pow(x_total,2)+Math.pow(y_total,2));
-    console.log(dist)
+    console.log("distance ",dist)
     if (dist==0) return;
 
     if (dist>STEP+0.0001){

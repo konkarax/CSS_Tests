@@ -7,7 +7,7 @@ const getScenario = async (req, res, next) => {
     const bins = await Routes.loadScenario(scenario)
     await Routes.moveTruck(bins)
     next()
-    // res.render("scenario1")
+    
 }
 
 

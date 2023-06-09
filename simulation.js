@@ -4,11 +4,11 @@ const url="mongodb+srv://grt2000:grt2000st3@cluster0.4px4edr.mongodb.net/test";
 const client=new MongoClient(url);
 
 //Connections are global
-var conn,db;
-var collection_trucks,data_trucks;
-var collection_bins,data_bins;
+// var conn,db;
+// var collection_trucks,data_trucks;
+// var collection_bins,data_bins;
 
-var bins_list=[];
+// var bins_list=[];
 
 var idx=0;
 
@@ -32,8 +32,6 @@ class Route{
         clearInterval(this.loopInterval);
     }
 }
-
-
 
 
 
