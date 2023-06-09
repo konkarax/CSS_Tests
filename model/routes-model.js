@@ -55,8 +55,8 @@ async function loadScenario(scenario){
     console.log(bins_list);
 
     console.log("initialed");
-    // return scenario_truck_data[0].route;
-    return bins_list;
+    return scenario_truck_data[0].route;
+    // return bins_list;
 }
 
 
@@ -65,16 +65,16 @@ var STEP = 200.0/111139.0;
 let idx=0
 async function moveTruck(target_list){
     
-    console.log("target_list",target_list)
+    // console.log("target_list",target_list)
     const target = target_list[idx];
-    // console.log("target-idx",target)
+    console.log("target_list[idx]",target)
     data_trucks = await collection_trucks.find({}).toArray();
 
     const pos_x = data_trucks[0].pos_x;
     const pos_y = data_trucks[0].pos_y;
     
-    console.log("target",target)
-    console.log("target[0], pos_x: ",target[0],pos_x)
+    // console.log("target",target)
+    // console.log("target[0], pos_x: ",target[0],pos_x)
     const x_total = target[0]-pos_x;
     const y_total = target[1]-pos_y;
     console.log("x_total",x_total)
