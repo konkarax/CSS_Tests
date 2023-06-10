@@ -174,6 +174,7 @@ router.get("/profile",
 router.get('/scenario1',
     RoutesController.getScenario,
     async (req,res)=>{
+        /*
         if(new_request){
             new_request.endLoop();
         }
@@ -181,7 +182,8 @@ router.get('/scenario1',
         await new_request.initialize();
     
         
-        new_request.startLoop();  
+        new_request.startLoop();  */
+        console.log("RENDER SCENARIO1");
         res.render("scenario1");
 })
 
@@ -200,26 +202,6 @@ router.get('/get_trucks',async (req,res)=>{
     data = await data.find().toArray();
     res.send(data);
 })
-
-
-
-var new_request;
-router.get('/map', async (req, res) => {
-    const publicPath = path.join(__dirname,"public");
-    router.use(express.static(publicPath));
-
-    if(new_request){
-        new_request.endLoop();
-    }
-    new_request=new Route(req.query.id);
-    await new_request.initialize();
-
-    // res.sendFile(publicPath+"/index.html");
-    // res.render("home")
-    
-    new_request.startLoop();  
-});
-
 
 
 

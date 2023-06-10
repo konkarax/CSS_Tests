@@ -52,7 +52,7 @@ async function loadScenario(scenario){
     }
 
 
-    console.log(bins_list);
+    //console.log(bins_list);
 
     console.log("initialed");
     return scenario_truck_data[0].route;
@@ -65,7 +65,7 @@ var STEP = 200.0/111139.0;
 let idx=0
 async function moveTruck(target_list){
     
-    // console.log("target_list",target_list)
+    //console.log("target_list",target_list)
     const target = target_list[idx];
     console.log("target_list[idx]",target)
     data_trucks = await collection_trucks.find({}).toArray();
@@ -77,10 +77,10 @@ async function moveTruck(target_list){
     // console.log("target[0], pos_x: ",target[0],pos_x)
     const x_total = target[0]-pos_x;
     const y_total = target[1]-pos_y;
-    console.log("x_total",x_total)
+    //console.log("x_total",x_total)
 
     const dist = Math.sqrt(Math.pow(x_total,2)+Math.pow(y_total,2));
-    console.log("distance ",dist)
+    //console.log("distance ",dist)
     if (dist==0) return;
 
     if (dist>STEP+0.0001){
@@ -90,7 +90,7 @@ async function moveTruck(target_list){
 
     }
     else{
-        console.log(bins_list);
+        //console.log(bins_list);
         console.log("reached");
         await collection_trucks.updateOne({_id:1},{$set:{'pos_x':target[0],'pos_y':target[1]}});
 

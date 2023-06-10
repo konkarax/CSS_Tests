@@ -13,19 +13,17 @@ const client=new MongoClient(url);
 var idx=0;
 
 class Route{
-    constructor(num){
-        this.num=num;
+    constructor(){
         this.loopInterval = null;
-        this.target_list = null;
         idx=0;
     }
 
-    async initialize(){
-        this.target_list = await loadScenario(this.num);
-    }
+    // async initialize(){
+    //     this.target_list = await loadScenario(this.num);
+    // }
 
-    async startLoop(){
-        this.loopInterval = setInterval(moveTruck,3000,this.target_list);
+    async startLoop(target_list){
+        this.loopInterval = setInterval(moveTruck,3000,target_list);
     }
 
     endLoop(){
