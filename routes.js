@@ -1,5 +1,4 @@
 const express = require('express');
-const Route = require('./simulation');
 const path = require('path');
 const RoutesController = require('./controller/routes-controller.js');
 const UserController = require('./controller/user-controller.js');
@@ -174,16 +173,6 @@ router.get("/profile",
 router.get('/scenario1',
     RoutesController.getScenario,
     async (req,res)=>{
-        /*
-        if(new_request){
-            new_request.endLoop();
-        }
-        new_request=new Route(req.query.id);
-        await new_request.initialize();
-    
-        
-        new_request.startLoop();  */
-        console.log("RENDER SCENARIO1");
         res.render("scenario1");
 })
 

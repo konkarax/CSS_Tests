@@ -6,7 +6,8 @@ let conn;
 let db;
 let collection_trucks;
 let collection_bins;
-var bins_list
+var bins_list;
+var idx=0;
 
 async function loadScenario(scenario){
 
@@ -55,6 +56,7 @@ async function loadScenario(scenario){
     //console.log(bins_list);
 
     console.log("initialed");
+    idx=0;
     return scenario_truck_data[0].route;
     // return bins_list;
 }
@@ -62,7 +64,6 @@ async function loadScenario(scenario){
 
 
 var STEP = 200.0/111139.0;
-let idx=0
 async function moveTruck(target_list){
     
     //console.log("target_list",target_list)
