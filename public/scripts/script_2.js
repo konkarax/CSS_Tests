@@ -52,7 +52,7 @@ for (let i=0;i<tr_marker.length;i++){
     await fetch("http://localhost:5000/get_bins/").then(response=>response.json()).then(bin=>{
       for (var i=0;i<bin.length;i++){
         if(bins_list.includes(parseInt(bin[i]._id))==false){
-          continue;
+          //continue;
         }
 
         var x=bin[i].location.coordinates[0]
@@ -63,9 +63,16 @@ for (let i=0;i<tr_marker.length;i++){
         var myIcon;
         var fill_level = 100*bin[i].binLoad/bin[i].binMaxLoad;
 
-        if(fill_level>80) myIcon="/icons/red_bin.png";
-        if(fill_level<=80) myIcon="/icons/orange_bin.png";
-        if(fill_level<40) myIcon="/icons/green_bin.png";
+        if(fill_level>80) myIcon="/icons/red_bin";
+        if(fill_level<=80) myIcon="/icons/orange_bin";
+        if(fill_level<40) myIcon="/icons/green_bin";
+
+        if (bins_list.includes(parseInt(bin[i]._id))==false){
+          myIcon= myIcon +"_transparent"
+        }
+        myIcon = myIcon +".png"
+
+        if(fill_level>80) myIcon="/icons/alert.png";
         
     
         

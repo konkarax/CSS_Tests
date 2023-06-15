@@ -13,67 +13,7 @@
         ]
       },
       "binMaxLoad": 75,
-      "binLoad": 60
-    },
-    {
-      "_id": "2",
-      "type": "WasteContainer",
-      "location": {
-        "coordinates": [
-          38.246339,
-          21.734346
-        ]
-      },
-      "binMaxLoad": 75,
-      "binLoad": 10
-    },
-    {
-      "_id": "3",
-      "type": "WasteContainer",
-      "location": {
-        "coordinates": [
-          38.246215, 
-          21.735795
-        ]
-      },
-      "binMaxLoad": 75,
-      "binLoad": 20
-    },
-    {
-      "_id": "4",
-      "type": "WasteContainer",
-      "location": {
-        "coordinates": [
-          38.256434,
-          21.744363
-        ]
-      },
-      "binMaxLoad": 75,
-      "binLoad": 60
-    },
-    {
-      "_id": "5",
-      "type": "WasteContainer",
-      "location": {
-        "coordinates": [
-          38.256601, 
-          21.743709
-        ]
-      },
-      "binMaxLoad": 75,
-      "binLoad": 60
-    },
-    {
-      "_id": "6",
-      "type": "WasteContainer",
-      "location": {
-        "coordinates": [
-          38.255973, 
-          21.742932
-        ]
-      },
-      "binMaxLoad": 75,
-      "binLoad": 60
+      "binLoad": 28
     },
     {
       "_id": "7",
@@ -82,18 +22,6 @@
         "coordinates": [
           38.255922, 
           21.742917
-        ]
-      },
-      "binMaxLoad": 75,
-      "binLoad": 60
-    },
-    {
-      "_id": "8",
-      "type": "WasteContainer",
-      "location": {
-        "coordinates": [
-          38.255235, 
-          21.742649
         ]
       },
       "binMaxLoad": 75,
@@ -109,31 +37,7 @@
         ]
       },
       "binMaxLoad": 75,
-      "binLoad": 60
-    },
-    {
-      "_id": "10",
-      "type": "WasteContainer",
-      "location": {
-        "coordinates": [
-          38.253553, 
-          21.741954
-        ]
-      },
-      "binMaxLoad": 75,
-      "binLoad": 60
-    },
-    {
-      "_id": "11",
-      "type": "WasteContainer",
-      "location": {
-        "coordinates": [
-          38.252828, 
-          21.741621
-        ]
-      },
-      "binMaxLoad": 75,
-      "binLoad": 60
+      "binLoad": 54
     },
     {
       "_id": "12",
@@ -145,31 +49,7 @@
         ]
       },
       "binMaxLoad": 75,
-      "binLoad": 60
-    },
-    {
-      "_id": "13",
-      "type": "WasteContainer",
-      "location": {
-        "coordinates": [
-          38.251707, 
-          21.741203
-        ]
-      },
-      "binMaxLoad": 75,
-      "binLoad": 60
-    },
-    {
-      "_id": "14",
-      "type": "WasteContainer",
-      "location": {
-        "coordinates": [
-          38.251184, 
-          21.740878
-        ]
-      },
-      "binMaxLoad": 75,
-      "binLoad": 60
+      "binLoad": 48
     },
     {
       "_id": "15",
@@ -181,19 +61,7 @@
         ]
       },
       "binMaxLoad": 75,
-      "binLoad": 60
-    },
-    {
-      "_id": "16",
-      "type": "WasteContainer",
-      "location": {
-        "coordinates": [
-          38.249968, 
-          21.739239
-        ]
-      },
-      "binMaxLoad": 75,
-      "binLoad": 60
+      "binLoad": 40
     },
     {
       "_id": "17",
@@ -205,67 +73,7 @@
         ]
       },
       "binMaxLoad": 75,
-      "binLoad": 60
-    },
-    {
-      "_id": "18",
-      "type": "WasteContainer",
-      "location": {
-        "coordinates": [
-          38.247959, 
-          21.736668	
-        ]
-      },
-      "binMaxLoad": 75,
-      "binLoad": 60
-    },
-    {
-      "_id": "19",
-      "type": "WasteContainer",
-      "location": {
-        "coordinates": [
-          38.247250, 
-          21.735793
-        ]
-      },
-      "binMaxLoad": 75,
-      "binLoad": 60
-    },
-    {
-      "_id": "20",
-      "type": "WasteContainer",
-      "location": {
-        "coordinates": [
-          38.246815, 
-          21.734801
-        ]
-      },
-      "binMaxLoad": 75,
-      "binLoad": 60
-    },
-    {
-      "_id": "21",
-      "type": "WasteContainer",
-      "location": {
-        "coordinates": [
-          38.244978, 
-          21.732886
-        ]
-      },
-      "binMaxLoad": 75,
-      "binLoad": 60
-    },
-    {
-      "_id": "22",
-      "type": "WasteContainer",
-      "location": {
-        "coordinates": [
-          38.244339, 
-          21.733241
-        ]
-      },
-      "binMaxLoad": 75,
-      "binLoad": 60
+      "binLoad": 38
     },
     {
       "_id": "23",
@@ -277,31 +85,7 @@
         ]
       },
       "binMaxLoad": 75,
-      "binLoad": 60
-    },
-    {
-      "_id": "24",
-      "type": "WasteContainer",
-      "location": {
-        "coordinates": [
-          38.247007, 
-          21.737307 
-        ]
-      },
-      "binMaxLoad": 75,
-      "binLoad": 60
-    },
-    {
-      "_id": "25",
-      "type": "WasteContainer",
-      "location": {
-        "coordinates": [
-          38.248653, 
-          21.738802
-        ]
-      },
-      "binMaxLoad": 75,
-      "binLoad": 60
+      "binLoad": 32
     },
     {
       "_id": "26",
@@ -313,7 +97,7 @@
         ]
       },
       "binMaxLoad": 75,
-      "binLoad": 60
+      "binLoad": 19
     },
     {
       "_id": "27",
@@ -337,43 +121,7 @@
         ]
       },
       "binMaxLoad": 75,
-      "binLoad": 60
-    },
-    {
-      "_id": "29",
-      "type": "WasteContainer",
-      "location": {
-        "coordinates": [
-          38.256652, 
-          21.743473
-        ]
-      },
-      "binMaxLoad": 75,
-      "binLoad": 60
-    },
-    {
-      "_id": "30",
-      "type": "WasteContainer",
-      "location": {
-        "coordinates": [
-          38.256669, 
-          21.743387
-        ]
-      },
-      "binMaxLoad": 75,
-      "binLoad": 60
-    },
-    {
-      "_id": "31",
-      "type": "WasteContainer",
-      "location": {
-        "coordinates": [
-          38.256836, 
-          21.742609
-        ]
-      },
-      "binMaxLoad": 75,
-      "binLoad": 60
+      "binLoad": 70
     },
     {
       "_id": "32",
@@ -382,18 +130,6 @@
         "coordinates": [
           38.256698, 
           21.741306
-        ]
-      },
-      "binMaxLoad": 75,
-      "binLoad": 60
-    },
-    {
-      "_id": "33",
-      "type": "WasteContainer",
-      "location": {
-        "coordinates": [
-          38.255805, 
-          21.740926
         ]
       },
       "binMaxLoad": 75,
@@ -412,30 +148,6 @@
       "binLoad": 60
     },
     {
-      "_id": "35",
-      "type": "WasteContainer",
-      "location": {
-        "coordinates": [
-          38.254311, 
-          21.740288
-        ]
-      },
-      "binMaxLoad": 75,
-      "binLoad": 60
-    },
-    {
-      "_id": "36",
-      "type": "WasteContainer",
-      "location": {
-        "coordinates": [
-          38.253360, 
-          21.740180
-        ]
-      },
-      "binMaxLoad": 75,
-      "binLoad": 60
-    },
-    {
       "_id": "37",
       "type": "WasteContainer",
       "location": {
@@ -448,60 +160,12 @@
       "binLoad": 60
     },
     {
-      "_id": "38",
-      "type": "WasteContainer",
-      "location": {
-        "coordinates": [
-          38.252763, 
-          21.739311
-        ]
-      },
-      "binMaxLoad": 75,
-      "binLoad": 60
-    },
-    {
-      "_id": "39",
-      "type": "WasteContainer",
-      "location": {
-        "coordinates": [
-          38.253049, 
-          21.737776
-        ]
-      },
-      "binMaxLoad": 75,
-      "binLoad": 60
-    },
-    {
-      "_id": "40",
-      "type": "WasteContainer",
-      "location": {
-        "coordinates": [
-          38.253108, 
-          21.737449
-        ]
-      },
-      "binMaxLoad": 75,
-      "binLoad": 60
-    },
-    {
       "_id": "41",
       "type": "WasteContainer",
       "location": {
         "coordinates": [
           38.252005, 
           21.736628
-        ]
-      },
-      "binMaxLoad": 75,
-      "binLoad": 60
-    },
-    {
-      "_id": "42",
-      "type": "WasteContainer",
-      "location": {
-        "coordinates": [
-          38.249814, 
-          21.735534
         ]
       },
       "binMaxLoad": 75,
@@ -556,36 +220,12 @@
       "binLoad": 60
     },
     {
-      "_id": "47",
-      "type": "WasteContainer",
-      "location": {
-        "coordinates": [
-          38.247251, 
-          21.732938
-        ]
-      },
-      "binMaxLoad": 75,
-      "binLoad": 60
-    },
-    {
       "_id": "48",
       "type": "WasteContainer",
       "location": {
         "coordinates": [
           38.247956, 
           21.733802
-        ]
-      },
-      "binMaxLoad": 75,
-      "binLoad": 60
-    },
-    {
-      "_id": "49",
-      "type": "WasteContainer",
-      "location": {
-        "coordinates": [
-          38.248726, 
-          21.734738
         ]
       },
       "binMaxLoad": 75,
@@ -604,60 +244,12 @@
       "binLoad": 60
     },
     {
-      "_id": "51",
-      "type": "WasteContainer",
-      "location": {
-        "coordinates": [
-          38.250275, 
-          21.736813
-        ]
-      },
-      "binMaxLoad": 75,
-      "binLoad": 60
-    },
-    {
-      "_id": "52",
-      "type": "WasteContainer",
-      "location": {
-        "coordinates": [
-          38.251323, 
-          21.737721
-        ]
-      },
-      "binMaxLoad": 75,
-      "binLoad": 60
-    },
-    {
       "_id": "53",
       "type": "WasteContainer",
       "location": {
         "coordinates": [
           38.251794, 
           21.739785
-        ]
-      },
-      "binMaxLoad": 75,
-      "binLoad": 60
-    },
-    {
-      "_id": "54",
-      "type": "WasteContainer",
-      "location": {
-        "coordinates": [
-          38.251754, 
-          21.740024
-        ]
-      },
-      "binMaxLoad": 75,
-      "binLoad": 60
-    },
-    {
-      "_id": "55",
-      "type": "WasteContainer",
-      "location": {
-        "coordinates": [
-          38.247913, 
-          21.737865
         ]
       },
       "binMaxLoad": 75,
@@ -685,7 +277,7 @@
         ]
       },
       "binMaxLoad": 75,
-      "binLoad": 60
+      "binLoad": 15
     },
     {
       "_id": "58",
@@ -709,7 +301,7 @@
         ]
       },
       "binMaxLoad": 75,
-      "binLoad": 60
+      "binLoad": 7
     },
     {
       "_id": "60",
@@ -736,36 +328,12 @@
       "binLoad": 60
     },
     {
-      "_id": "62",
-      "type": "WasteContainer",
-      "location": {
-        "coordinates": [
-          38.252188, 
-          21.744290
-        ]
-      },
-      "binMaxLoad": 75,
-      "binLoad": 60
-    },
-    {
       "_id": "63",
       "type": "WasteContainer",
       "location": {
         "coordinates": [
           38.251077, 
           21.743155
-        ]
-      },
-      "binMaxLoad": 75,
-      "binLoad": 60
-    },
-    {
-      "_id": "64",
-      "type": "WasteContainer",
-      "location": {
-        "coordinates": [
-          38.249885, 
-          21.741683
         ]
       },
       "binMaxLoad": 75,
@@ -793,7 +361,7 @@
         ]
       },
       "binMaxLoad": 75,
-      "binLoad": 60
+      "binLoad": 24
     },
     {
       "_id": "67",
@@ -802,18 +370,6 @@
         "coordinates": [
           38.246534, 
           21.737363
-        ]
-      },
-      "binMaxLoad": 75,
-      "binLoad": 60
-    },
-    {
-      "_id": "68",
-      "type": "WasteContainer",
-      "location": {
-        "coordinates": [
-          38.245150, 
-          21.735512
         ]
       },
       "binMaxLoad": 75,
@@ -832,36 +388,12 @@
       "binLoad": 60
     },
     {
-      "_id": "70",
-      "type": "WasteContainer",
-      "location": {
-        "coordinates": [
-          38.243246, 
-          21.733761
-        ]
-      },
-      "binMaxLoad": 75,
-      "binLoad": 60
-    },
-    {
       "_id": "71",
       "type": "WasteContainer",
       "location": {
         "coordinates": [
           38.243810, 
           21.735074
-        ]
-      },
-      "binMaxLoad": 75,
-      "binLoad": 60
-    },
-    {
-      "_id": "72",
-      "type": "WasteContainer",
-      "location": {
-        "coordinates": [
-          38.244497, 
-          21.735895
         ]
       },
       "binMaxLoad": 75,
@@ -880,36 +412,12 @@
       "binLoad": 60
     },
     {
-      "_id": "74",
-      "type": "WasteContainer",
-      "location": {
-        "coordinates": [
-          38.246165, 
-          21.738121
-        ]
-      },
-      "binMaxLoad": 75,
-      "binLoad": 60
-    },
-    {
       "_id": "75",
       "type": "WasteContainer",
       "location": {
         "coordinates": [
           38.246746, 
           21.738890
-        ]
-      },
-      "binMaxLoad": 75,
-      "binLoad": 60
-    },
-    {
-      "_id": "76",
-      "type": "WasteContainer",
-      "location": {
-        "coordinates": [
-          38.248723, 
-          21.738902
         ]
       },
       "binMaxLoad": 75,

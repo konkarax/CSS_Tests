@@ -1,0 +1,426 @@
+//[60,  61, 63, 65, 67,
+//  69, 71, 73, 75, 26,
+//  27, 56, 58]
+
+[
+    {
+      "_id": "1",
+      "type": "WasteContainer",
+      "location": {
+        "coordinates": [
+          38.246658,
+          21.736345
+        ]
+      },
+      "binMaxLoad": 75,
+      "binLoad": 28
+    },
+    {
+      "_id": "7",
+      "type": "WasteContainer",
+      "location": {
+        "coordinates": [
+          38.255922, 
+          21.742917
+        ]
+      },
+      "binMaxLoad": 75,
+      "binLoad": 60
+    },
+    {
+      "_id": "9",
+      "type": "WasteContainer",
+      "location": {
+        "coordinates": [
+          38.254428, 
+          21.742325
+        ]
+      },
+      "binMaxLoad": 75,
+      "binLoad": 54
+    },
+    {
+      "_id": "12",
+      "type": "WasteContainer",
+      "location": {
+        "coordinates": [
+          38.252373, 
+          21.741471
+        ]
+      },
+      "binMaxLoad": 75,
+      "binLoad": 48
+    },
+    {
+      "_id": "15",
+      "type": "WasteContainer",
+      "location": {
+        "coordinates": [
+          38.250639, 
+          21.740158
+        ]
+      },
+      "binMaxLoad": 75,
+      "binLoad": 40
+    },
+    {
+      "_id": "17",
+      "type": "WasteContainer",
+      "location": {
+        "coordinates": [
+          38.249023, 
+          21.737992
+        ]
+      },
+      "binMaxLoad": 75,
+      "binLoad": 38
+    },
+    {
+      "_id": "23",
+      "type": "WasteContainer",
+      "location": {
+        "coordinates": [
+          38.244978, 
+          21.732886 
+        ]
+      },
+      "binMaxLoad": 75,
+      "binLoad": 32
+    },
+    {
+      "_id": "26",
+      "type": "WasteContainer",
+      "location": {
+        "coordinates": [
+          38.249644, 
+          21.740118
+        ]
+      },
+      "binMaxLoad": 75,
+      "binLoad": 34
+    },
+    {
+      "_id": "27",
+      "type": "WasteContainer",
+      "location": {
+        "coordinates": [
+          38.250877, 
+          21.741671
+        ]
+      },
+      "binMaxLoad": 75,
+      "binLoad": 29
+    },
+    {
+      "_id": "28",
+      "type": "WasteContainer",
+      "location": {
+        "coordinates": [
+          38.256227, 
+          21.745142
+        ]
+      },
+      "binMaxLoad": 75,
+      "binLoad": 70
+    },
+    {
+      "_id": "32",
+      "type": "WasteContainer",
+      "location": {
+        "coordinates": [
+          38.256698, 
+          21.741306
+        ]
+      },
+      "binMaxLoad": 75,
+      "binLoad": 70
+    },
+    {
+      "_id": "34",
+      "type": "WasteContainer",
+      "location": {
+        "coordinates": [
+          38.254899, 
+          21.740524
+        ]
+      },
+      "binMaxLoad": 75,
+      "binLoad": 65
+    },
+    {
+      "_id": "37",
+      "type": "WasteContainer",
+      "location": {
+        "coordinates": [
+          38.253168, 
+          21.740160
+        ]
+      },
+      "binMaxLoad": 75,
+      "binLoad": 64
+    },
+    {
+      "_id": "41",
+      "type": "WasteContainer",
+      "location": {
+        "coordinates": [
+          38.252005, 
+          21.736628
+        ]
+      },
+      "binMaxLoad": 75,
+      "binLoad": 60
+    },
+    {
+      "_id": "43",
+      "type": "WasteContainer",
+      "location": {
+        "coordinates": [
+          38.249376, 
+          21.734858
+        ]
+      },
+      "binMaxLoad": 75,
+      "binLoad": 56
+    },
+    {
+      "_id": "44",
+      "type": "WasteContainer",
+      "location": {
+        "coordinates": [
+          38.247697, 
+          21.732723
+        ]
+      },
+      "binMaxLoad": 75,
+      "binLoad": 54
+    },
+    {
+      "_id": "45",
+      "type": "WasteContainer",
+      "location": {
+        "coordinates": [
+          38.245740, 
+          21.730837
+        ]
+      },
+      "binMaxLoad": 75,
+      "binLoad": 50
+    },
+    {
+      "_id": "46",
+      "type": "WasteContainer",
+      "location": {
+        "coordinates": [
+          38.246447, 
+          21.731920
+        ]
+      },
+      "binMaxLoad": 75,
+      "binLoad": 45
+    },
+    {
+      "_id": "48",
+      "type": "WasteContainer",
+      "location": {
+        "coordinates": [
+          38.247956, 
+          21.733802
+        ]
+      },
+      "binMaxLoad": 75,
+      "binLoad": 38
+    },
+    {
+      "_id": "50",
+      "type": "WasteContainer",
+      "location": {
+        "coordinates": [
+          38.249540, 
+          21.735822
+        ]
+      },
+      "binMaxLoad": 75,
+      "binLoad": 35
+    },
+    {
+      "_id": "53",
+      "type": "WasteContainer",
+      "location": {
+        "coordinates": [
+          38.251794, 
+          21.739785
+        ]
+      },
+      "binMaxLoad": 75,
+      "binLoad": 28
+    },
+    {
+      "_id": "56",
+      "type": "WasteContainer",
+      "location": {
+        "coordinates": [
+          38.251846, 
+          21.742899
+        ]
+      },
+      "binMaxLoad": 75,
+      "binLoad": 24
+    },
+    {
+      "_id": "57",
+      "type": "WasteContainer",
+      "location": {
+        "coordinates": [
+          38.253278, 
+          21.744252
+        ]
+      },
+      "binMaxLoad": 75,
+      "binLoad": 15
+    },
+    {
+      "_id": "58",
+      "type": "WasteContainer",
+      "location": {
+        "coordinates": [
+          38.254238, 
+          21.745100
+        ]
+      },
+      "binMaxLoad": 75,
+      "binLoad": 18
+    },
+    {
+      "_id": "59",
+      "type": "WasteContainer",
+      "location": {
+        "coordinates": [
+          38.255055, 
+          21.745754
+        ]
+      },
+      "binMaxLoad": 75,
+      "binLoad": 7
+    },
+    {
+      "_id": "60",
+      "type": "WasteContainer",
+      "location": {
+        "coordinates": [
+          38.254896, 
+          21.747296
+        ]
+      },
+      "binMaxLoad": 75,
+      "binLoad": 69
+    },
+    {
+      "_id": "61",
+      "type": "WasteContainer",
+      "location": {
+        "coordinates": [
+          38.253144, 
+          21.745933
+        ]
+      },
+      "binMaxLoad": 75,
+      "binLoad": 67
+    },
+    {
+      "_id": "63",
+      "type": "WasteContainer",
+      "location": {
+        "coordinates": [
+          38.251077, 
+          21.743155
+        ]
+      },
+      "binMaxLoad": 75,
+      "binLoad": 62
+    },
+    {
+      "_id": "65",
+      "type": "WasteContainer",
+      "location": {
+        "coordinates": [
+          38.248339, 
+          21.739724
+        ]
+      },
+      "binMaxLoad": 75,
+      "binLoad": 60
+    },
+    {
+      "_id": "66",
+      "type": "WasteContainer",
+      "location": {
+        "coordinates": [
+          38.247051, 
+          21.738039
+        ]
+      },
+      "binMaxLoad": 75,
+      "binLoad": 24
+    },
+    {
+      "_id": "67",
+      "type": "WasteContainer",
+      "location": {
+        "coordinates": [
+          38.246534, 
+          21.737363
+        ]
+      },
+      "binMaxLoad": 75,
+      "binLoad": 56
+    },
+    {
+      "_id": "69",
+      "type": "WasteContainer",
+      "location": {
+        "coordinates": [
+          38.244157, 
+          21.734265
+        ]
+      },
+      "binMaxLoad": 75,
+      "binLoad": 51
+    },
+    {
+      "_id": "71",
+      "type": "WasteContainer",
+      "location": {
+        "coordinates": [
+          38.243810, 
+          21.735074
+        ]
+      },
+      "binMaxLoad": 75,
+      "binLoad": 48
+    },
+    {
+      "_id": "73",
+      "type": "WasteContainer",
+      "location": {
+        "coordinates": [
+          38.245390, 
+          21.737052
+        ]
+      },
+      "binMaxLoad": 75,
+      "binLoad": 45
+    },
+    {
+      "_id": "75",
+      "type": "WasteContainer",
+      "location": {
+        "coordinates": [
+          38.246746, 
+          21.738890
+        ]
+      },
+      "binMaxLoad": 75,
+      "binLoad": 40
+    }
+  ]

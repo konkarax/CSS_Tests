@@ -170,10 +170,10 @@ router.get("/profile",
 
 //----------------Scenarios----------------//
 
-router.get('/scenario1',
+router.get('/scenario',
     RoutesController.getScenario,
     async (req,res)=>{
-        res.render("scenario1");
+        res.render("scenario");
 })
 
 router.get('/get_bins',async (req,res)=>{
