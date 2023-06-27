@@ -72,7 +72,8 @@ for (let i=0;i<tr_marker.length;i++){
         }
         myIcon = myIcon +".png"
 
-        if(fill_level>80) myIcon="/icons/alert.png";
+        if (bin[i].alert==true) myIcon="/icons/alert.png";
+
         
     
         
@@ -90,8 +91,16 @@ for (let i=0;i<tr_marker.length;i++){
           marker[i].setIcon(myIcon);
         } 
         
-        infowindow[i].setContent("Bin Id: "+String(bin[i]._id)+ " Bin Load:"+String(bin[i].binLoad));
+        infowindow[i].setContent("Bin Id: "+String(bin[i]._id)+ " Bin Load:"+String(bin[i].binLoad)+
+                                  " Temperature: "+ String(bin[i].temperature+ " Humidity: "+String(bin[i].humidity)));
         
+        if(bin[i].temperature>50) {
+          infowindow[i].setContent("High Temperature Warning");
+        }
+
+        if(bin[i].humidity>70) {
+          infowindow[i].setContent("High Humidity Warning");
+        }
 
       }
     })

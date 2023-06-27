@@ -100,15 +100,24 @@ async function moveTruck(target_list){
             for (i=0;i<bins_list.length;i++){
                 const bin_info = await collection_bins.aggregate([
                     {$match:{_id:String(bins_list[i])}},
-                    {$project:{_id:1,binLoad:1,binMaxLoad:1}}
+                    {$project:{_id:1,binLoad:1,binMaxLoad:1,temperature:1,humidity:1,alert:1}}
                 ]).toArray();
+
                 const bins_inc = parseInt(Math.random() * 4 +5);
+                const temp_inc = parseInt(Math.random()*4)-1;
+                const hum_inc = parseInt(Math.random()*7)-2;
+                
+                if (bin_info[0].alert==true) continue;
+                if (bin_info[0].temperature+temp_inc>50 || bin_info[0].humidity+hum_inc>70){
+                    await collection_bins.updateOne({_id:String(bins_list[i])},{$set:{'alert':true}});
+                }
                 if (bin_info[0].binLoad+bins_inc<bin_info[0].binMaxLoad){
-                    await collection_bins.updateOne({_id:String(bins_list[i])},{$inc:{'binLoad':bins_inc}});
+                    await collection_bins.updateOne({_id:String(bins_list[i])},{$inc:{'binLoad':bins_inc,'temperature':temp_inc,'humidity':hum_inc}});
                 }
                 else{
-                    await collection_bins.updateOne({_id:String(bins_list[i])},{$set:{'binLoad':bin_info[0].binMaxLoad}});
-                }            
+                    await collection_bins.updateOne({_id:String(bins_list[i])},{$set:{'binLoad':bin_info[0].binMaxLoad}},{$inc:{'temperature':temp_inc,'humidity':hum_inc}});
+                }
+
             }
             
 
@@ -118,7 +127,7 @@ async function moveTruck(target_list){
                 {$project:{_id:1,binLoad:1}}]).toArray();
             const bin_id = bin_info[0]._id;
             const bin_load = bin_info[0].binLoad;
-            await collection_bins.updateOne({_id:bin_id},{$set:{binLoad:0}});
+            await collection_bins.updateOne({_id:bin_id},{$set:{"binLoad":0,"temperature":35,"humidity":30,alert:false}});
             await collection_trucks.updateOne({_id:1},{$inc:{truckLoad:bin_load}});
         }
         else if (target[2]==-1){
