@@ -70,6 +70,9 @@ async function loadScenario(scenario){
         }
     }
 
+    const python_file = "./nn/empty_txt.py";
+    spawn('python',[python_file])
+
 
 
     console.log("initialed");
@@ -126,20 +129,26 @@ async function moveTruck(target_list){
                 hum_array[i].push(humidity);
 
                 size = load_array[i].length;
-                const load_5=[load_array[i][size-1],load_array[i][size-2],load_array[i][size-3],load_array[i][size-4],load_array[i][size-5]];
-                const temp_5=[temp_array[i][size-1],temp_array[i][size-2],temp_array[i][size-3],temp_array[i][size-4],temp_array[i][size-5]];
-                const hum_5=[hum_array[i][size-1],hum_array[i][size-2],hum_array[i][size-3],hum_array[i][size-4],hum_array[i][size-5]];
+                const load_5=[load_array[i][size-5],load_array[i][size-4],load_array[i][size-3],load_array[i][size-2],load_array[i][size-1]];
+                const temp_5=[temp_array[i][size-5],temp_array[i][size-4],temp_array[i][size-3],temp_array[i][size-2],temp_array[i][size-1]];
+                const hum_5=[hum_array[i][size-5],hum_array[i][size-4],hum_array[i][size-3],hum_array[i][size-2],hum_array[i][size-1]];
 
                 const bins_inc = parseInt(Math.random()*4+5);
                 const temp_inc = parseInt(Math.random()*4)-1;
                 const hum_inc = parseInt(Math.random()*7)-2;
+                
+                //To collect data
+                //const python_file = "./nn/add_to_txt.py";
+                //const input = [load_5,bins_inc,temp_5,temp_inc,hum_5,hum_inc];
+                //const python_process = spawn('python',[python_file,input]) 
 
-                const python_file = "./nn/test.py";
+                //To predict value
+                const python_file = "./nn/predict_value.py";
                 const input = [load_5,bins_inc,temp_5,temp_inc,hum_5,hum_inc];
-                const python_process = spawn('python',[python_file,input])
+                const python_process = spawn('python',[python_file,input]) 
 
                 python_process.stdout.on('data', (data) => {
-                    //console.log('Output:', data.toString());
+                    console.log('Output:', data.toString());
                 });
 
 
