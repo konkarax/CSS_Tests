@@ -52,7 +52,7 @@ for (let i=0;i<tr_marker.length;i++){
     await fetch("http://localhost:5000/get_bins/").then(response=>response.json()).then(bin=>{
       for (var i=0;i<bin.length;i++){
         if(bins_list.includes(parseInt(bin[i]._id))==false){
-          continue;
+          //continue;
         }
 
         var x=bin[i].location.coordinates[0]
@@ -63,9 +63,17 @@ for (let i=0;i<tr_marker.length;i++){
         var myIcon;
         var fill_level = 100*bin[i].binLoad/bin[i].binMaxLoad;
 
-        if(fill_level>80) myIcon="/icons/red_bin.png";
-        if(fill_level<=80) myIcon="/icons/orange_bin.png";
-        if(fill_level<40) myIcon="/icons/green_bin.png";
+        if(fill_level>80) myIcon="/icons/red_bin";
+        if(fill_level<=80) myIcon="/icons/orange_bin";
+        if(fill_level<40) myIcon="/icons/green_bin";
+
+        if (bins_list.includes(parseInt(bin[i]._id))==false){
+          myIcon= myIcon +"_transparent"
+        }
+        myIcon = myIcon +".png"
+
+        if (bin[i].alert==true) myIcon="/icons/alert.png";
+
         
     
         
@@ -83,8 +91,16 @@ for (let i=0;i<tr_marker.length;i++){
           marker[i].setIcon(myIcon);
         } 
         
-        infowindow[i].setContent("Bin Id: "+String(bin[i]._id)+ " Bin Load:"+String(bin[i].binLoad));
+        infowindow[i].setContent("Bin Id: "+String(bin[i]._id)+ " Bin Load:"+String(bin[i].binLoad)+
+                                  " Temperature: "+ String(bin[i].temperature+ " Humidity: "+String(bin[i].humidity)));
         
+        if(bin[i].temperature>50) {
+          infowindow[i].setContent("High Temperature Warning");
+        }
+
+        if(bin[i].humidity>70) {
+          infowindow[i].setContent("High Humidity Warning");
+        }
 
       }
     })

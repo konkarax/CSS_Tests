@@ -1,5 +1,4 @@
 const express = require('express');
-const Route = require('./simulation');
 const path = require('path');
 const RoutesController = require('./controller/routes-controller.js');
 const UserController = require('./controller/user-controller.js');
@@ -171,18 +170,10 @@ router.get("/profile",
 
 //----------------Scenarios----------------//
 
-router.get('/scenario1',
+router.get('/scenario',
     RoutesController.getScenario,
     async (req,res)=>{
-        if(new_request){
-            new_request.endLoop();
-        }
-        new_request=new Route(req.query.id);
-        await new_request.initialize();
-    
-        
-        new_request.startLoop();  
-        res.render("scenario1");
+        res.render("scenario");
 })
 
 router.get('/get_bins',async (req,res)=>{
@@ -200,26 +191,6 @@ router.get('/get_trucks',async (req,res)=>{
     data = await data.find().toArray();
     res.send(data);
 })
-
-
-
-var new_request;
-router.get('/map', async (req, res) => {
-    const publicPath = path.join(__dirname,"public");
-    router.use(express.static(publicPath));
-
-    if(new_request){
-        new_request.endLoop();
-    }
-    new_request=new Route(req.query.id);
-    await new_request.initialize();
-
-    // res.sendFile(publicPath+"/index.html");
-    // res.render("home")
-    
-    new_request.startLoop();  
-});
-
 
 
 

@@ -1,0 +1,527 @@
+[
+    {
+        "_id": "1",
+        "alert": false,
+        "binLoad": 28,
+        "binMaxLoad": 75,
+        "humidity": 55,
+        "location": {
+            "coordinates": [
+                38.246658,
+                21.736345
+            ]
+        },
+        "temperature": 40,
+        "type": "WasteContainer"
+    },
+    {
+        "_id": "7",
+        "alert": false,
+        "binLoad": 60,
+        "binMaxLoad": 75,
+        "humidity": 37,
+        "location": {
+            "coordinates": [
+                38.255922,
+                21.742917
+            ]
+        },
+        "temperature": 44,
+        "type": "WasteContainer"
+    },
+    {
+        "_id": "9",
+        "alert": false,
+        "binLoad": 54,
+        "binMaxLoad": 75,
+        "humidity": 54,
+        "location": {
+            "coordinates": [
+                38.254428,
+                21.742325
+            ]
+        },
+        "temperature": 37,
+        "type": "WasteContainer"
+    },
+    {
+        "_id": "12",
+        "alert": false,
+        "binLoad": 48,
+        "binMaxLoad": 75,
+        "humidity": 36,
+        "location": {
+            "coordinates": [
+                38.252373,
+                21.741471
+            ]
+        },
+        "temperature": 38,
+        "type": "WasteContainer"
+    },
+    {
+        "_id": "15",
+        "alert": false,
+        "binLoad": 40,
+        "binMaxLoad": 75,
+        "humidity": 44,
+        "location": {
+            "coordinates": [
+                38.250639,
+                21.740158
+            ]
+        },
+        "temperature": 40,
+        "type": "WasteContainer"
+    },
+    {
+        "_id": "17",
+        "alert": false,
+        "binLoad": 38,
+        "binMaxLoad": 75,
+        "humidity": 31,
+        "location": {
+            "coordinates": [
+                38.249023,
+                21.737992
+            ]
+        },
+        "temperature": 44,
+        "type": "WasteContainer"
+    },
+    {
+        "_id": "23",
+        "alert": false,
+        "binLoad": 32,
+        "binMaxLoad": 75,
+        "humidity": 47,
+        "location": {
+            "coordinates": [
+                38.244978,
+                21.732886
+            ]
+        },
+        "temperature": 39,
+        "type": "WasteContainer"
+    },
+    {
+        "_id": "26",
+        "alert": false,
+        "binLoad": 34,
+        "binMaxLoad": 75,
+        "humidity": 51,
+        "location": {
+            "coordinates": [
+                38.249644,
+                21.740118
+            ]
+        },
+        "temperature": 45,
+        "type": "WasteContainer"
+    },
+    {
+        "_id": "27",
+        "alert": false,
+        "binLoad": 29,
+        "binMaxLoad": 75,
+        "humidity": 33,
+        "location": {
+            "coordinates": [
+                38.250877,
+                21.741671
+            ]
+        },
+        "temperature": 41,
+        "type": "WasteContainer"
+    },
+    {
+        "_id": "28",
+        "alert": false,
+        "binLoad": 70,
+        "binMaxLoad": 75,
+        "humidity": 52,
+        "location": {
+            "coordinates": [
+                38.256227,
+                21.745142
+            ]
+        },
+        "temperature": 38,
+        "type": "WasteContainer"
+    },
+    {
+        "_id": "32",
+        "alert": false,
+        "binLoad": 70,
+        "binMaxLoad": 75,
+        "humidity": 35,
+        "location": {
+            "coordinates": [
+                38.256698,
+                21.741306
+            ]
+        },
+        "temperature": 45,
+        "type": "WasteContainer"
+    },
+    {
+        "_id": "34",
+        "alert": false,
+        "binLoad": 65,
+        "binMaxLoad": 75,
+        "humidity": 49,
+        "location": {
+            "coordinates": [
+                38.254899,
+                21.740524
+            ]
+        },
+        "temperature": 44,
+        "type": "WasteContainer"
+    },
+    {
+        "_id": "37",
+        "alert": false,
+        "binLoad": 64,
+        "binMaxLoad": 75,
+        "humidity": 51,
+        "location": {
+            "coordinates": [
+                38.253168,
+                21.74016
+            ]
+        },
+        "temperature": 39,
+        "type": "WasteContainer"
+    },
+    {
+        "_id": "41",
+        "alert": false,
+        "binLoad": 60,
+        "binMaxLoad": 75,
+        "humidity": 38,
+        "location": {
+            "coordinates": [
+                38.252005,
+                21.736628
+            ]
+        },
+        "temperature": 43,
+        "type": "WasteContainer"
+    },
+    {
+        "_id": "43",
+        "alert": false,
+        "binLoad": 56,
+        "binMaxLoad": 75,
+        "humidity": 44,
+        "location": {
+            "coordinates": [
+                38.249376,
+                21.734858
+            ]
+        },
+        "temperature": 41,
+        "type": "WasteContainer"
+    },
+    {
+        "_id": "44",
+        "alert": false,
+        "binLoad": 54,
+        "binMaxLoad": 75,
+        "humidity": 53,
+        "location": {
+            "coordinates": [
+                38.247697,
+                21.732723
+            ]
+        },
+        "temperature": 39,
+        "type": "WasteContainer"
+    },
+    {
+        "_id": "45",
+        "alert": false,
+        "binLoad": 50,
+        "binMaxLoad": 75,
+        "humidity": 50,
+        "location": {
+            "coordinates": [
+                38.24574,
+                21.730837
+            ]
+        },
+        "temperature": 44,
+        "type": "WasteContainer"
+    },
+    {
+        "_id": "46",
+        "alert": false,
+        "binLoad": 45,
+        "binMaxLoad": 75,
+        "humidity": 40,
+        "location": {
+            "coordinates": [
+                38.246447,
+                21.73192
+            ]
+        },
+        "temperature": 42,
+        "type": "WasteContainer"
+    },
+    {
+        "_id": "48",
+        "alert": false,
+        "binLoad": 38,
+        "binMaxLoad": 75,
+        "humidity": 43,
+        "location": {
+            "coordinates": [
+                38.247956,
+                21.733802
+            ]
+        },
+        "temperature": 37,
+        "type": "WasteContainer"
+    },
+    {
+        "_id": "50",
+        "alert": false,
+        "binLoad": 35,
+        "binMaxLoad": 75,
+        "humidity": 39,
+        "location": {
+            "coordinates": [
+                38.24954,
+                21.735822
+            ]
+        },
+        "temperature": 41,
+        "type": "WasteContainer"
+    },
+    {
+        "_id": "53",
+        "alert": false,
+        "binLoad": 28,
+        "binMaxLoad": 75,
+        "humidity": 47,
+        "location": {
+            "coordinates": [
+                38.251794,
+                21.739785
+            ]
+        },
+        "temperature": 44,
+        "type": "WasteContainer"
+    },
+    {
+        "_id": "56",
+        "alert": false,
+        "binLoad": 24,
+        "binMaxLoad": 75,
+        "humidity": 54,
+        "location": {
+            "coordinates": [
+                38.251846,
+                21.742899
+            ]
+        },
+        "temperature": 37,
+        "type": "WasteContainer"
+    },
+    {
+        "_id": "57",
+        "alert": false,
+        "binLoad": 15,
+        "binMaxLoad": 75,
+        "humidity": 35,
+        "location": {
+            "coordinates": [
+                38.253278,
+                21.744252
+            ]
+        },
+        "temperature": 39,
+        "type": "WasteContainer"
+    },
+    {
+        "_id": "58",
+        "alert": false,
+        "binLoad": 18,
+        "binMaxLoad": 75,
+        "humidity": 49,
+        "location": {
+            "coordinates": [
+                38.254238,
+                21.7451
+            ]
+        },
+        "temperature": 42,
+        "type": "WasteContainer"
+    },
+    {
+        "_id": "59",
+        "alert": false,
+        "binLoad": 7,
+        "binMaxLoad": 75,
+        "humidity": 34,
+        "location": {
+            "coordinates": [
+                38.255055,
+                21.745754
+            ]
+        },
+        "temperature": 38,
+        "type": "WasteContainer"
+    },
+    {
+        "_id": "60",
+        "alert": false,
+        "binLoad": 69,
+        "binMaxLoad": 75,
+        "humidity": 46,
+        "location": {
+            "coordinates": [
+                38.254896,
+                21.747296
+            ]
+        },
+        "temperature": 38,
+        "type": "WasteContainer"
+    },
+    {
+        "_id": "61",
+        "alert": false,
+        "binLoad": 67,
+        "binMaxLoad": 75,
+        "humidity": 35,
+        "location": {
+            "coordinates": [
+                38.253144,
+                21.745933
+            ]
+        },
+        "temperature": 43,
+        "type": "WasteContainer"
+    },
+    {
+        "_id": "63",
+        "alert": false,
+        "binLoad": 62,
+        "binMaxLoad": 75,
+        "humidity": 45,
+        "location": {
+            "coordinates": [
+                38.251077,
+                21.743155
+            ]
+        },
+        "temperature": 41,
+        "type": "WasteContainer"
+    },
+    {
+        "_id": "65",
+        "alert": false,
+        "binLoad": 60,
+        "binMaxLoad": 75,
+        "humidity": 37,
+        "location": {
+            "coordinates": [
+                38.248339,
+                21.739724
+            ]
+        },
+        "temperature": 44,
+        "type": "WasteContainer"
+    },
+    {
+        "_id": "66",
+        "alert": false,
+        "binLoad": 24,
+        "binMaxLoad": 75,
+        "humidity": 38,
+        "location": {
+            "coordinates": [
+                38.247051,
+                21.738039
+            ]
+        },
+        "temperature": 39,
+        "type": "WasteContainer"
+    },
+    {
+        "_id": "67",
+        "alert": false,
+        "binLoad": 56,
+        "binMaxLoad": 75,
+        "humidity": 36,
+        "location": {
+            "coordinates": [
+                38.246534,
+                21.737363
+            ]
+        },
+        "temperature": 35,
+        "type": "WasteContainer"
+    },
+    {
+        "_id": "69",
+        "alert": false,
+        "binLoad": 51,
+        "binMaxLoad": 75,
+        "humidity": 52,
+        "location": {
+            "coordinates": [
+                38.244157,
+                21.734265
+            ]
+        },
+        "temperature": 37,
+        "type": "WasteContainer"
+    },
+    {
+        "_id": "71",
+        "alert": false,
+        "binLoad": 48,
+        "binMaxLoad": 75,
+        "humidity": 43,
+        "location": {
+            "coordinates": [
+                38.24381,
+                21.735074
+            ]
+        },
+        "temperature": 37,
+        "type": "WasteContainer"
+    },
+    {
+        "_id": "73",
+        "alert": false,
+        "binLoad": 45,
+        "binMaxLoad": 75,
+        "humidity": 31,
+        "location": {
+            "coordinates": [
+                38.24539,
+                21.737052
+            ]
+        },
+        "temperature": 39,
+        "type": "WasteContainer"
+    },
+    {
+        "_id": "75",
+        "alert": false,
+        "binLoad": 40,
+        "binMaxLoad": 75,
+        "humidity": 43,
+        "location": {
+            "coordinates": [
+                38.246746,
+                21.73889
+            ]
+        },
+        "temperature": 38,
+        "type": "WasteContainer"
+    }
+]
