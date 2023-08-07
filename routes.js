@@ -35,7 +35,8 @@ router.post("/dologin",
         res.locals.username = req.session.username
         if(req.session.username === 'admin'){
             // AdminController.getStatistics
-            res.render("admin")
+            // res.render("admin")
+            res.redirect("/admin")
         }
         else{
             res.render("home")
@@ -49,21 +50,25 @@ router.get("/logout", UserController.doLogout,
     res.redirect("/")
 })
 
+//------------------Drivers--------------------//
+
+
 //------------------Admin-----------------//
 router.get("/admin", 
     UserController.checkIfAuthenticated,
     AdminController.checkIfAuthenticatedAdmin,
+    AdminController.showBins,
     // AdminController.getStatistics
 )
 
 router.get("/profile",
     UserController.checkIfAuthenticated,
     (req,res, next) => {
-        if(req.session.username == "admin"){
+        if(req.session.username == "admin"){            
             res.redirect("/admin")
         }
     next()},
-    UserController.userGetInfo,
+    // UserController.userGetInfo,
     // UserController.userShowBookings,
     (req, res) => {
         res.render("userProfile")
@@ -78,13 +83,13 @@ router.get("/profile",
 //     res.render("adminShowUsers", {users: req.users})
 // })
 
-// router.get("/adminAddUser", (req, res) => {
-//     UserController.checkIfAuthenticated,
-//     AdminController.checkIfAuthenticatedAdmin,
-//     res.render("adminAddUser")
-// })
+router.get("/addUser", (req, res) => {
+    UserController.checkIfAuthenticated,
+    AdminController.checkIfAuthenticatedAdmin,
+    res.render("addDriver")
+})
 
-// router.post("/adminDoAddUser",
+// router.post("/doAddUser",
 //     UserController.checkIfAuthenticated,
 //     AdminController.checkIfAuthenticatedAdmin,
 //     AdminController.adminDoAddUser,
@@ -166,6 +171,8 @@ router.get("/profile",
 //         res.render("adminShowRooms", { rooms: req.rooms })
 //     }
 // )
+
+
 
 
 //----------------Scenarios----------------//

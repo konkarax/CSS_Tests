@@ -12,7 +12,7 @@ async function login(username,password){
     //     throw new Error("Missing username or password")
     
     const collection = db.collection("users")
-    console.log("after collection")
+    // console.log("after collection")
     user = await collection.find({"username":username}).toArray();
     console.log('model: user',user[0])
     
@@ -33,4 +33,18 @@ async function login(username,password){
     // }
 }
 
-module.exports =  { login}
+async function getUserInfo(username){
+    try{
+        const user = await User.findAll({
+        where: { username: username },
+        raw: true
+    })
+        return user
+    }catch (error) {
+        throw error
+    }
+}
+
+
+module.exports =  { login,
+                    getUserInfo}

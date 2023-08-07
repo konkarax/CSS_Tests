@@ -1,4 +1,4 @@
-// const Admin = require('../model/admin-model.js'); 
+const Admin = require('../model/admin-model.js'); 
 
 
 const checkIfAuthenticatedAdmin = async(req, res, next) => { //dinoume access ston admin gia tis selides tou
@@ -11,6 +11,21 @@ const checkIfAuthenticatedAdmin = async(req, res, next) => { //dinoume access st
     }
 }
 
+const showBins = async(req,res,next)=>{
+    try{
+        const binsNum = await Admin.getInfo()
+        console.log("controller-bins:", binsNum)     
+
+        const binsLoad = await Admin.getBinsLoad()
+        console.log("controller-binsLoad:", binsLoad)  
+          
+        // res.render("admin",{bins:binsNum})
+        res.render("admin",{bins:binsNum, binsLoad:JSON.stringify(binsLoad)})
+
+    }catch(error){       
+        throw error
+        }
+}
 
 // async function getStatistics(req,res,next){
 //     try{
@@ -169,5 +184,6 @@ module.exports = {
     // adminDeleteBooking,
     // adminDoEditBooking,
     checkIfAuthenticatedAdmin,
+    showBins,
     // getStatistics
   };

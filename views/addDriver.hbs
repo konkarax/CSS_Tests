@@ -1,0 +1,72 @@
+<form action="/doAddDriver" method="post">
+    <div class="row mt-5">
+        <div class="col-8 offset-2">
+            <h2 class="text-center">Driver's Information</h2>
+        </div>
+    </div>
+    
+    <div class="row mt-1">
+        <div class="col-6 offset-3">
+            <div class="form-floating">                
+                <label class="form-label" for="username">Username</label>
+                <input type="text" class="form-control"
+                    value="{{username}}" name="username" id="username" placeholder="Username"
+                    required="required" autofocus>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-6 offset-3">
+            <div class="form-floating">
+                <label class="form-label" for="password">Password</label>
+                <input type="password" class="form-control"
+                    value="{{password}}" name="password" id="password" placeholder="Password"
+                    required="required">                
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-6 offset-3">
+            <div class="form-floating">
+                <label class="form-label" for="email">Email</label>
+                <input type="email" class="form-control"
+                    value="{{email}}" name="email" id="email" placeholder="email"
+                    required="required">                
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-6 offset-3">
+            <div class="form-floating">
+                <label class="form-label" for="phone">Phone Number</label>
+                <input type="tel" class="form-control"
+                    value="{{phone}}" name="phone" id="phone" placeholder="Phone Number"
+                    required="required">                
+            </div>
+        </div>
+    </div>
+   
+    <div class="row mt-3">
+        <div class="col-6 offset-3">
+            <label class="form-label">Scenario:</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="scenarioId" id="scenario1" value="scenario1" required>
+                <label class="form-check-label" for="scenario1">Scenario 1</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="scenarioId" id="scenario2" value="scenario2" required>
+                <label class="form-check-label" for="scenario2">Scenario 2</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="scenarioId" id="scenario3" value="scenario3" required>
+                <label class="form-check-label" for="scenario3">Scenario 3</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-6 offset-3">
+            <button type="submit" class="btn btn-secondary login-btn btn-block w-100">Add Driver</button>
+        </div>
+    </div>
+</form>

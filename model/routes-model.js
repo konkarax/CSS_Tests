@@ -2,6 +2,12 @@ const {MongoClient} = require('mongodb')
 const url="mongodb+srv://grt2000:grt2000st3@cluster0.4px4edr.mongodb.net/test";
 const client=new MongoClient(url);
 const {spawn} = require('child_process');
+const pythonExecutable = 'C:\\Users\\manos\\Downloads\\python-3.11.4-amd64.exe';
+const pythonFile = './nn/predict_value.py';
+
+
+console.log(process.env.PATH);
+
 
 let conn;
 let db;
@@ -144,9 +150,15 @@ async function moveTruck(target_list){
 
                 //To predict value
                 const python_file = "./nn/predict_value.py";
-                const input = [load_5,bins_inc,temp_5,temp_inc,hum_5,hum_inc];
-                const python_process = spawn('python',[python_file,input]) 
-
+                // const input = [load_5,bins_inc,temp_5,temp_inc,hum_5,hum_inc];
+                // const python_process = spawn('python',[python_file,input]) 
+                const input = [load_5, bins_inc, temp_5, temp_inc, hum_5, hum_inc];
+                const python_process = spawn('python', [pythonFile, input]);
+                // const python_process = spawn(pythonExecutable, [pythonFile, input]);
+                
+                python_process.stderr.on('data', function(data) {
+                    console.log('stdout: ' +data);
+                  });
                 python_process.stdout.on('data', (data) => {
                     console.log('Output:', data.toString());
                 });
@@ -192,6 +204,7 @@ async function moveTruck(target_list){
         
         
     }
+    console.log("moved")
 }
 
 
