@@ -22,9 +22,11 @@ const WasteManagementSession = session({
 
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5500;
 //sessions
 app.use(WasteManagementSession);
+
+
 
 //static files
 app.use(express.static("public"));
@@ -32,6 +34,16 @@ app.use(express.static("public"));
 app.use(express.urlencoded({extended:false}));
 app.engine(".hbs", engine({extname:".hbs"}));
 app.set("view engine",".hbs");
+
+// app.use(express.static('public', {
+//     setHeaders: (res, path) => {
+//         if (path.endsWith('.css')) {
+//             res.setHeader('Content-Type', 'text/css');
+//         } else if (path.endsWith('.js')) {
+//             res.setHeader('Content-Type', 'application/javascript');
+//         }
+//     }
+// }));
 
 
 app.use("/",router)

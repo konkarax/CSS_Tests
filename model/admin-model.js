@@ -6,45 +6,44 @@ const client=new MongoClient(url);
 // db = conn.db("waste_managment");
 
 
-async function getInfo(){
+async function getBins(){
     try {
-        const conn = await client.connect();
-        const db = conn.db("waste_managment");
-        // collection_bins = db.collection('bins');
-        //data_bins = await collection_bins.find({}).toArray();
+        const conn = await client.connect();        
 
-        const collection_bins = db.collection('bins');
-        // const data_bins = await collection_bins.find({}).toArray();
-        // console.log('model: bins',data_bins)
-        const count = await collection_bins.countDocuments({});
-        console.log(`Total count: ${count}`);
-        
-        return count
+        const scen1 = conn.db("scenario_1");
+        const scen2 = conn.db("scenario_2");
+        const scen3 = conn.db("scenario_3");
+
+        const bins1 = scen1.collection("bins")
+        const bins2 = scen2.collection("bins")
+        const bins3 = scen3.collection("bins")
+
+        const count1 = await bins1.countDocuments({});
+        const count2 = await bins2.countDocuments({});
+        const count3 = await bins3.countDocuments({});
+
+        return count1 + count2 + count3
 
     } catch (error) {
-
         throw error
     }
 }
 
-//
-async function getBinsLoad(){
+
+async function getBinsLoad(scenario){
     try {
         const conn = await client.connect();
-        const db = conn.db("waste_managment");
-        // collection_bins = db.collection('bins');
-        //data_bins = await collection_bins.find({}).toArray();
 
-        const scenario = conn.db("scenario_1");
-        // if (scenario=='1'){
-        //     scenario = conn.db("scenario_1");
-        // }
-        // else if (scenario=='2'){
-        //     scenario = conn.db("scenario_2");
-        // }
-        // else if(scenario=='3'){
-        //     scenario = conn.db("scenario_3");
-        // }
+        // const scenario = conn.db("scenario_1");
+        if (scenario=='1'){
+            scenario = conn.db("scenario_1");
+        }
+        else if (scenario=='2'){
+            scenario = conn.db("scenario_2");
+        }
+        else if(scenario=='3'){
+            scenario = conn.db("scenario_3");
+        }
 
         const bins = scenario.collection("bins")
         
@@ -54,7 +53,7 @@ async function getBinsLoad(){
         // const count2 = await allBins.countDocuments({});
         // console.log(`COUNT2: ${count2}`);
         const length = allBins.length
-        console.log("LENGTH: ",length)
+        console.log("model-allBins.length: ",length)
 
         const redBins_data = await bins.find({"binLoad": { $gt: 35, $lt: 60 }}).toArray();
         
@@ -62,11 +61,10 @@ async function getBinsLoad(){
         const orangeBins = await bins.countDocuments({"binLoad": { $gt: 35, $lte: 60 }});
         const redBins = await bins.countDocuments({"binLoad": { $gt: 60 }});
 
-        console.log("allBins",allBins)
+        // console.log("allBins",allBins)
         const binsLoad = [greenBins, orangeBins ,redBins]
-        console.log("reds",redBins_data)
-        
-        
+        // console.log("reds",redBins_data)
+
         console.log('model: bins',binsLoad)
         
         return binsLoad
@@ -82,4 +80,5 @@ async function getBinsLoad(){
 
 
 module.exports =  { getBinsLoad,
-                    getInfo}
+                    getBins
+                    }

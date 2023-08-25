@@ -11,21 +11,46 @@ const checkIfAuthenticatedAdmin = async(req, res, next) => { //dinoume access st
     }
 }
 
-const showBins = async(req,res,next)=>{
+
+const totalBins = async(req,res,next)=>{
     try{
-        const binsNum = await Admin.getInfo()
-        console.log("controller-bins:", binsNum)     
+        const binsNum = await Admin.getBins()
+        console.log("controller-bins:", binsNum)
+        console.log("controller-id:", req.query.scenarioId)
 
-        const binsLoad = await Admin.getBinsLoad()
-        console.log("controller-binsLoad:", binsLoad)  
-          
-        // res.render("admin",{bins:binsNum})
-        res.render("admin",{bins:binsNum, binsLoad:JSON.stringify(binsLoad)})
+        if (req.query.scenarioId){
+            console.log("Scenario statistics was selected")
+            // req.query.scenId=req.query.scenarioId
+            req.query.bins = binsNum
+            next()
+        }
+        else{
+            console.log("Access to admin page")
+            res.render("admin",{bins:binsNum})
+        }
 
-    }catch(error){       
+    }catch(error){
         throw error
         }
 }
+
+const getStatistics = async (req, res, next) => {
+    try {
+        // const scenarioId = req.query.scenarioId;
+        const binsNum = req.query.bins
+        const scenarioId = req.query.scenarioId
+        console.log("scenario Id in getStatistics: ", scenarioId)
+        const scenarioData = await Admin.getBinsLoad(scenarioId)
+
+        console.log('controller: bins',scenarioData)
+
+        res.setHeader('X-Content-Type-Options', 'nosniff')
+        res.render("admin",{bins:binsNum, binsLoad:JSON.stringify(scenarioData)}) 
+
+    } catch (error) {
+        next(error);
+    }
+};
 
 // async function getStatistics(req,res,next){
 //     try{
@@ -184,6 +209,6 @@ module.exports = {
     // adminDeleteBooking,
     // adminDoEditBooking,
     checkIfAuthenticatedAdmin,
-    showBins,
-    // getStatistics
+    totalBins,
+    getStatistics,
   };

@@ -57,9 +57,16 @@ router.get("/logout", UserController.doLogout,
 router.get("/admin", 
     UserController.checkIfAuthenticated,
     AdminController.checkIfAuthenticatedAdmin,
-    AdminController.showBins,
-    // AdminController.getStatistics
+    AdminController.totalBins,
 )
+router.get("/admin/statistics",
+    UserController.checkIfAuthenticated,
+    AdminController.checkIfAuthenticatedAdmin,
+    AdminController.totalBins,
+    AdminController.getStatistics
+)
+
+
 
 router.get("/profile",
     UserController.checkIfAuthenticated,
@@ -75,13 +82,6 @@ router.get("/profile",
     }
 )
 
-// router.get("/adminShowUsers", 
-//     UserController.checkIfAuthenticated,
-//     AdminController.checkIfAuthenticatedAdmin,  
-//     AdminController.findAllUsers, 
-//     (req,res) => {
-//     res.render("adminShowUsers", {users: req.users})
-// })
 
 router.get("/addUser", (req, res) => {
     UserController.checkIfAuthenticated,
