@@ -1,5 +1,7 @@
 <script> 
     const binsLoadData = {{binsLoad}}
+    const binsHumidityData= {{binsHumidity}}
+    const binsTempData = {{binsTemp}}
 </script>
 
 <div class="container-fluid">
@@ -44,17 +46,42 @@
 
       {{#if binsLoad}}
       <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-4">
             <div class="card">
               <div class="card-header">
-                Bins Load
+                Load levels
               </div>
               <div class="card-body"> 
                 <input type="hidden" id="binsLoadData" value="{{binsLoad}}">
-                <canvas id="myChart"></canvas>                
+                <canvas id="myChart1"></canvas>                
               </div>
             </div>
           </div>
+
+          <div class="col-md-4">
+            <div class="card">
+              <div class="card-header">
+                Humidity Levels
+              </div>
+              <div class="card-body"> 
+                <input type="hidden" id="binsHumidityData" value="{{binsHumidity}}">
+                <canvas id="myChart2"></canvas>                
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="card">
+              <div class="card-header">
+                Temperature levels
+              </div>
+              <div class="card-body"> 
+                <input type="hidden" id="binsTempData" value="{{binsTemp}}">
+                <canvas id="myChart3"></canvas>                
+              </div>
+            </div>
+          </div>
+
         </div>
         {{/if}}
     </div>

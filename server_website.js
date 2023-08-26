@@ -14,7 +14,7 @@ const WasteManagementSession = session({
     //(an leitourgei 24 wres)
     resave: false,
     saveUninitialized: false,
-    name: "HotelRes-sid", // an den to orisoume connect.sid = onoma sto cookie wste na isxuei gia auth thn efarmogh tou hostname
+    name: "SWM-sid", 
     cookie: {
         maxAge: 1000 * 60 * 20 // 20 λεπτά
     }
@@ -35,15 +35,6 @@ app.use(express.urlencoded({extended:false}));
 app.engine(".hbs", engine({extname:".hbs"}));
 app.set("view engine",".hbs");
 
-// app.use(express.static('public', {
-//     setHeaders: (res, path) => {
-//         if (path.endsWith('.css')) {
-//             res.setHeader('Content-Type', 'text/css');
-//         } else if (path.endsWith('.js')) {
-//             res.setHeader('Content-Type', 'application/javascript');
-//         }
-//     }
-// }));
 
 
 app.use("/",router)

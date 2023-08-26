@@ -36,33 +36,28 @@ const totalBins = async(req,res,next)=>{
 
 const getStatistics = async (req, res, next) => {
     try {
-        // const scenarioId = req.query.scenarioId;
+        
         const binsNum = req.query.bins
         const scenarioId = req.query.scenarioId
         console.log("scenario Id in getStatistics: ", scenarioId)
-        const scenarioData = await Admin.getBinsLoad(scenarioId)
 
-        console.log('controller: bins',scenarioData)
+        const binsData = await Admin.getBinsData(scenarioId)
 
-        res.setHeader('X-Content-Type-Options', 'nosniff')
-        res.render("admin",{bins:binsNum, binsLoad:JSON.stringify(scenarioData)}) 
+        const loadData = binsData.loads
+        const humidityData = binsData.humidity
+        const tempData = binsData.temperature
+        console.log('controller: bins',binsData)
+        console.log('controller: load',loadData)
+        console.log('controller: humidity',humidityData)
+
+        
+        res.render("admin",{bins:binsNum, binsLoad:JSON.stringify(loadData), binsHumidity:JSON.stringify(humidityData),binsTemp:JSON.stringify(tempData)}) 
 
     } catch (error) {
         next(error);
     }
 };
 
-// async function getStatistics(req,res,next){
-//     try{
-//         const bookedRooms  = await Admin.getRooms() 
-
-//         // console.log("bookedRooms: ", bookedRooms)
-//         res.render("admin",{rooms:JSON.stringify(bookedRooms)})
-
-//     }catch(error){        
-//         next()
-//     }
-// }
 
 
 // const findAllUsers = async (req, res, next) => {
