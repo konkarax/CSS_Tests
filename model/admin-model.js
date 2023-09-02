@@ -54,19 +54,19 @@ async function getBinsData(scenario){
         // console.log("model-allBins.length: ",length)
         // const redBins_data = await bins.find({"binLoad": { $gt: 35, $lt: 60 }}).toArray();
         
-        const greenBins = await bins.countDocuments({"binLoad": { $lte: 35 }});        
-        const orangeBins = await bins.countDocuments({"binLoad": { $gt: 35, $lte: 60 }});
-        const redBins = await bins.countDocuments({"binLoad": { $gt: 60 }});
+        const greenBins = await bins.countDocuments({"binLoad": { $lte: 40 }});        
+        const orangeBins = await bins.countDocuments({"binLoad": { $gt: 40, $lte: 80 }});
+        const redBins = await bins.countDocuments({"binLoad": { $gt: 80 }});
 
         // const loads = [greenBins, orangeBins, redBins]
 
-        const GlevelsHum = await bins.countDocuments({"humidity": { $lte: 40 }});        
-        const OlevelsHum = await bins.countDocuments({"humidity": { $gt: 40, $lte: 50 }});
-        const RlevelsHum = await bins.countDocuments({"humidity": { $gt: 50 }});
+        const GlevelsHum = await bins.countDocuments({"humidity": { $lte: 50 }});        
+        const OlevelsHum = await bins.countDocuments({"humidity": { $gt: 50, $lte: 65 }});
+        const RlevelsHum = await bins.countDocuments({"humidity": { $gt: 65 }});
 
-        const GlevelsTemp = await bins.countDocuments({"temperature": { $lte: 35 }});        
-        const OlevelsTemp = await bins.countDocuments({"temperature": { $gt: 35, $lte: 40 }});
-        const RlevelsTemp = await bins.countDocuments({"temperature": { $gt: 40 }});
+        const GlevelsTemp = await bins.countDocuments({"temperature": { $lte: 40 }});        
+        const OlevelsTemp = await bins.countDocuments({"temperature": { $gt: 40, $lte: 45 }});
+        const RlevelsTemp = await bins.countDocuments({"temperature": { $gt: 45 }});
 
         const data = {
             loads: [greenBins, orangeBins, redBins],

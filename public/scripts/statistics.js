@@ -32,14 +32,13 @@ document.addEventListener('DOMContentLoaded', async function() {
     });
     
     const loadData = {
-        labels: ['green', 'orange', 'red'],
+        labels: ['<40', '40-80', '>80'],
         datasets: [{
-            label: 'Bins Load Levels',
             data: binsLoad,
-            backgroundColor: 'rgba(75, 192, 192, 0.6)',
+            backgroundColor: ['rgba(0, 204, 0, 0.6)','rgba(255, 165, 0, 0.6)','rgba(255, 0, 0, 0.6)'],
             borderColor: 'rgba(75, 192, 192, 1)',
             borderWidth: 1
-        }]
+        }],
     };
 
     const ctx1 = chartCanvas1.getContext('2d');
@@ -47,6 +46,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         type: 'bar',
         data: loadData,
         options: {
+            legend:{display:false},
             responsive: true,
             maintainAspectRatio: false,
             scales: {
@@ -58,11 +58,10 @@ document.addEventListener('DOMContentLoaded', async function() {
     });
 
     const humidityData = {
-        labels: ['green', 'orange', 'red'],
+        labels: ['<50', '50-65', '>65'],
         datasets: [{
-            label: 'Bins Humidity Levels',
             data: binsHumidity,
-            backgroundColor: 'rgba(75, 192, 192, 0.6)',
+            backgroundColor: ['rgba(0, 204, 0, 0.6)','rgba(255, 165, 0, 0.6)','rgba(255, 0, 0, 0.6)'],
             borderColor: 'rgba(75, 192, 192, 1)',
             borderWidth: 1
         }]
@@ -73,6 +72,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         type: 'bar',
         data: humidityData,
         options: {
+            legend:{display:false},
             responsive: true,
             maintainAspectRatio: false,
             scales: {
@@ -84,11 +84,10 @@ document.addEventListener('DOMContentLoaded', async function() {
     });
     
     const tempData = {
-        labels: ['green', 'orange', 'red'],
+        labels: ['<40', '40-45', '>45'],
         datasets: [{
-            label: 'Bins Temperature Levels',
             data: binsTemp,
-            backgroundColor: 'rgba(75, 192, 192, 0.6)',
+            backgroundColor: ['rgba(0, 204, 0, 0.6)','rgba(255, 165, 0, 0.6)','rgba(255, 0, 0, 0.6)'],
             borderColor: 'rgba(75, 192, 192, 1)',
             borderWidth: 1
         }]
@@ -99,6 +98,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         type: 'bar',
         data: tempData,
         options: {
+            legend:{display:false},
             responsive: true,
             maintainAspectRatio: false,
             scales: {
