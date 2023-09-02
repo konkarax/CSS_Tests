@@ -38,6 +38,10 @@ body {
   /* text-decoration: underline; */
 }
 
+.sidebar h3{
+  color: white;
+}
+
 .main-container {
   padding: 20px;
 }

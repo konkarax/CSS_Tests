@@ -34,8 +34,6 @@ router.post("/dologin",
         req.session.username = req.body.username
         res.locals.username = req.session.username
         if(req.session.username === 'admin'){
-            // AdminController.getStatistics
-            // res.render("admin")
             res.redirect("/admin")
         }
         else{
@@ -57,8 +55,9 @@ router.get("/logout", UserController.doLogout,
 router.get("/admin", 
     UserController.checkIfAuthenticated,
     AdminController.checkIfAuthenticatedAdmin,
-    AdminController.totalBins,
+    AdminController.totalBins
 )
+
 router.get("/admin/statistics",
     UserController.checkIfAuthenticated,
     AdminController.checkIfAuthenticatedAdmin,
@@ -82,10 +81,12 @@ router.get("/profile",
     }
 )
 
-
-router.get("/addUser", (req, res) => {
+    
+router.get("/addUser",     
     UserController.checkIfAuthenticated,
     AdminController.checkIfAuthenticatedAdmin,
+    (req, res) => {
+        console.log("in addUser after authenticated")
     res.render("addDriver")
 })
 
@@ -178,6 +179,8 @@ router.get("/addUser", (req, res) => {
 //----------------Scenarios----------------//
 
 router.get('/scenario',
+    UserController.checkIfAuthenticated,
+    AdminController.checkIfAuthenticatedAdmin,
     RoutesController.getScenario,
     async (req,res)=>{
         res.render("scenario");

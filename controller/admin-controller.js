@@ -2,7 +2,8 @@ const Admin = require('../model/admin-model.js');
 
 
 const checkIfAuthenticatedAdmin = async(req, res, next) => { //dinoume access ston admin gia tis selides tou
-    
+    console.log("Admin-session: ", req.session)
+    console.log("Admin-username: ", req.session.username)
     if(req.session.username == 'admin'){
         next()
     }
