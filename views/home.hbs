@@ -1,12 +1,22 @@
 <section class="hero">
     <div class="container text-center">
-      <h1>Welcome to Our Hotel</h1>
-      <button type="button" id="bookNowButton" class="btn btn-primary text-center" data-toggle="modal" data-target="#bookingModal">Book Now</button>
-      <h2>Experience Comfort and Luxury</h2>
-      <p>Our hotel offers the finest accommodations, dining options, and amenities for a truly unforgettable stay.</p>
+      <h1>Welcome</h1>
+      <button type="button" id="learnMore" class="btn btn-primary text-center" >Learn More</button>
+      {{!-- <h2>Experience Comfort and Luxury</h2> --}}
+      <h5>For an environmentally friendly, efficient and effective garbage management system.</h2>
     </div>
 </section>
 
+<section class="About" id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h2>About Us</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget semper odio, sit amet volutpat lorem. Integer quis vehicula ipsum. Phasellus consectetur sapien sit amet lorem tincidunt, sit amet consequat ante suscipit.</p>
+            </div>
+        </div>
+    </div>
+</section>
 
 <section class="contact">
     <div class="container">
@@ -25,40 +35,3 @@
       </div>
     </div>
 </section>
-
-{{!-- <div class="modal fade" id="bookingModal" tabindex="-1" role="dialog" aria-labelledby="bookingModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="bookingModalLabel">Book Now</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="bookingForm" action="/doCheckAvailability" method="get">
-                <div class="form-group">
-                    <label for="check_in_date">Check-in Date</label>
-                    <input type="date" class="form-control" id="check_in_date" name="check_in_date" required>
-                </div>
-                <div class="form-group">
-                    <label for="check_out_date">Check-out Date</label>
-                    <input type="date" class="form-control" id="check_out_date" name="check_out_date" required>
-                </div>
-                <div class="form-group">
-                    <label for="guests_count">Guests</label>
-                    <input type="number" class="form-control" id="guests_count" name="guests_count" min="1" required>
-                </div>
-                <div class="form-group">
-                    <label for="guests_count">Rooms</label>
-                    <input type="number" class="form-control" id="rooms_count" name="rooms_count" min="1" required>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-secondary">Book</button>
-                </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div> --}}
