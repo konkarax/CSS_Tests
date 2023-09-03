@@ -87,7 +87,6 @@ async function getBinsId(scenario){
 
         const bins = scenario.collection("bins")
         const binsArray = await bins.aggregate([{$project: {_id: 1}}]).toArray()
-
         const ids = binsArray.map(bin => parseInt(bin._id))               
         
         return ids
@@ -97,6 +96,39 @@ async function getBinsId(scenario){
         throw error
     }
 }
+
+
+async function getRealData(scenario,bin){
+    try {
+        const conn = await client.connect()
+
+        if (scenario=='1'){
+            scenario = conn.db("scenario_1")
+        }
+        else if (scenario=='2'){
+            scenario = conn.db("scenario_2")
+        }
+        else if(scenario=='3'){
+            scenario = conn.db("scenario_3")
+        }
+
+        const bins = scenario.collection("bins")
+        const load = await bins.aggregate([{$match: { _id: bin }},{$project: {_id: 0,load: "$binLoad"}}]).toArray()
+        const humidity = await bins.aggregate([{$match: { _id: bin }},{$project: {_id: 0,humidity: "$humidity"}}]).toArray()
+        const temp = await await bins.aggregate([{$match: { _id: bin }},{$project: {_id: 0,temperature: "$temperature"}}]).toArray()
+        
+        const data = [load[0].load,humidity[0].humidity,temp[0].temperature]
+        console.log("model-data: ", data)
+        console.log("load: ", load)
+        
+        return data
+
+    } catch (error) {
+
+        throw error
+    }
+}
+
 
 
 // async function getBinsLoad(scenario){
@@ -152,4 +184,5 @@ module.exports =  {
                     getBins,
                     getBinsData,
                     getBinsId,
+                    getRealData
                     }

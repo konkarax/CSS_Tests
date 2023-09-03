@@ -92,9 +92,11 @@ const getPredictions = async (req, res, next) => {
         //sto .js stelnw
         //eite pinakas me realData=[load,humidity,temp] antistoixa predicted k ta jexwrizw ekei
         //eite realLoad, predictedLoad k omoia gia ta upoloipa k ta exei etoima
-       
-        console.log("Ids: ", binsIds)
-        res.render("admin",{bins:binsNum, binsLoad:JSON.stringify(loadData), binsHumidity:JSON.stringify(humidityData),binsTemp:JSON.stringify(tempData), binsIds:binsIds,scenarioID:scenarioId,binID:binId}) 
+
+        const realData = await Admin.getRealData(scenarioId,binId)
+        // console.log("realData: ", realData)
+        // console.log("Ids: ", binsIds)
+        res.render("admin",{bins:binsNum, binsLoad:JSON.stringify(loadData), binsHumidity:JSON.stringify(humidityData),binsTemp:JSON.stringify(tempData), binsIds:binsIds,scenarioID:scenarioId,binID:binId,realData:realData}) 
 
     } catch (error) {
         next(error)

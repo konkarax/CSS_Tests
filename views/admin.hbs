@@ -87,10 +87,55 @@
         </div>
 
       </div>
-      {{/if}}
+
       {{#if binID}}
-        <h3>Selected bin: {{binID}}</h3>
+        <h3>Selected bin: {{binID}}</h3> 
+        <h3> bin's real data: {{realData}}</h3>
+
+        <input type="hidden" id="realData" value="{{realData}}">
+
+        <div class="row">
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-header">
+              Test Bin {{binID}} Load (%)
+            </div>
+            <div class="card-body"> 
+              {{!-- <input type="hidden" id="binLoadData" value="{{binsLoad}}"> --}}
+              <canvas id="myChart4"></canvas>                
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-header">
+              Humidity {{binID}} Levels (%)
+            </div>
+            <div class="card-body"> 
+              {{!-- <input type="hidden" id="binsHumidityData" value="{{binsHumidity}}"> --}}
+              <canvas id="myChart5"></canvas>                
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-header">
+              Temperature {{binID}} Levels (°C)
+            </div>
+            <div class="card-body"> 
+              {{!-- <input type="hidden" id="binsTempData" value="{{binsTemp}}"> --}}
+              <canvas id="myChart6"></canvas>                
+            </div>
+          </div>
+        </div>
+
       {{/if}}
+
+
+      {{/if}}
+      
 
     </div>
   </div>
