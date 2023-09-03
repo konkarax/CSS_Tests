@@ -31,42 +31,31 @@ async function getBins(){
 
 async function getBinsData(scenario){
     try {
-        const conn = await client.connect();
+        const conn = await client.connect()
 
-        // const scenario = conn.db("scenario_1");
         if (scenario=='1'){
-            scenario = conn.db("scenario_1");
+            scenario = conn.db("scenario_1")
         }
         else if (scenario=='2'){
-            scenario = conn.db("scenario_2");
+            scenario = conn.db("scenario_2")
         }
         else if(scenario=='3'){
-            scenario = conn.db("scenario_3");
+            scenario = conn.db("scenario_3")
         }
 
         const bins = scenario.collection("bins")
         
+        const greenBins = await bins.countDocuments({"binLoad": { $lte: 40 }})        
+        const orangeBins = await bins.countDocuments({"binLoad": { $gt: 40, $lte: 80 }})
+        const redBins = await bins.countDocuments({"binLoad": { $gt: 80 }})
 
-        // const allBins = await bins.find({}).toArray();
-        // const count2 = await allBins.countDocuments({});
-        // console.log(`COUNT2: ${count2}`);
-        // const length = allBins.length
-        // console.log("model-allBins.length: ",length)
-        // const redBins_data = await bins.find({"binLoad": { $gt: 35, $lt: 60 }}).toArray();
-        
-        const greenBins = await bins.countDocuments({"binLoad": { $lte: 40 }});        
-        const orangeBins = await bins.countDocuments({"binLoad": { $gt: 40, $lte: 80 }});
-        const redBins = await bins.countDocuments({"binLoad": { $gt: 80 }});
+        const GlevelsHum = await bins.countDocuments({"humidity": { $lte: 50 }})     
+        const OlevelsHum = await bins.countDocuments({"humidity": { $gt: 50, $lte: 65 }})
+        const RlevelsHum = await bins.countDocuments({"humidity": { $gt: 65 }})
 
-        // const loads = [greenBins, orangeBins, redBins]
-
-        const GlevelsHum = await bins.countDocuments({"humidity": { $lte: 50 }});        
-        const OlevelsHum = await bins.countDocuments({"humidity": { $gt: 50, $lte: 65 }});
-        const RlevelsHum = await bins.countDocuments({"humidity": { $gt: 65 }});
-
-        const GlevelsTemp = await bins.countDocuments({"temperature": { $lte: 40 }});        
-        const OlevelsTemp = await bins.countDocuments({"temperature": { $gt: 40, $lte: 45 }});
-        const RlevelsTemp = await bins.countDocuments({"temperature": { $gt: 45 }});
+        const GlevelsTemp = await bins.countDocuments({"temperature": { $lte: 40 }})       
+        const OlevelsTemp = await bins.countDocuments({"temperature": { $gt: 40, $lte: 45 }})
+        const RlevelsTemp = await bins.countDocuments({"temperature": { $gt: 45 }})
 
         const data = {
             loads: [greenBins, orangeBins, redBins],
@@ -74,11 +63,6 @@ async function getBinsData(scenario){
             temperature: [GlevelsTemp, OlevelsTemp, RlevelsTemp]
         }
 
-
-        // const binsLoad = [greenBins, orangeBins ,redBins]
-        // console.log('model: bins',binsLoad)
-        
-        // return binsLoad
         return data
 
     } catch (error) {
@@ -86,6 +70,34 @@ async function getBinsData(scenario){
         throw error
     }
 }
+
+async function getBinsId(scenario){
+    try {
+        const conn = await client.connect()
+
+        if (scenario=='1'){
+            scenario = conn.db("scenario_1")
+        }
+        else if (scenario=='2'){
+            scenario = conn.db("scenario_2")
+        }
+        else if(scenario=='3'){
+            scenario = conn.db("scenario_3")
+        }
+
+        const bins = scenario.collection("bins")
+        const binsArray = await bins.aggregate([{$project: {_id: 1}}]).toArray()
+
+        const ids = binsArray.map(bin => parseInt(bin._id))               
+        
+        return ids
+
+    } catch (error) {
+
+        throw error
+    }
+}
+
 
 // async function getBinsLoad(scenario){
 //     try {
@@ -139,5 +151,5 @@ async function getBinsData(scenario){
 module.exports =  { 
                     getBins,
                     getBinsData,
-                    // getBinsLoad,
+                    getBinsId,
                     }

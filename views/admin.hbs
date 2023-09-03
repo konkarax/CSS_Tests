@@ -1,8 +1,3 @@
-<script> 
-    const binsLoadData = {{binsLoad}}
-    const binsHumidityData= {{binsHumidity}}
-    const binsTempData = {{binsTemp}}
-</script>
 
 <div class="container-fluid">
   <div class="row">
@@ -45,45 +40,58 @@
       </main>
 
       {{#if binsLoad}}
-      <div class="row">
-          <div class="col-md-4">
-            <div class="card">
-              <div class="card-header">
-                Load Levels (%)
-              </div>
-              <div class="card-body"> 
-                <input type="hidden" id="binsLoadData" value="{{binsLoad}}">
-                <canvas id="myChart1"></canvas>                
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4">
-            <div class="card">
-              <div class="card-header">
-                Humidity Levels (%)
-              </div>
-              <div class="card-body"> 
-                <input type="hidden" id="binsHumidityData" value="{{binsHumidity}}">
-                <canvas id="myChart2"></canvas>                
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4">
-            <div class="card">
-              <div class="card-header">
-                Temperature Levels (°C)
-              </div>
-              <div class="card-body"> 
-                <input type="hidden" id="binsTempData" value="{{binsTemp}}">
-                <canvas id="myChart3"></canvas>                
-              </div>
-            </div>
-          </div>
-
+      <div>
+        <h5>Bin IDs for scenario {{scenarioID}}:</h5>
+        <div class="bin-id-list">
+          {{#each binsIds}}
+          <a href="/admin/predictions?scenarioId={{../scenarioID}}&binId={{this}}" class="bin-id-link">{{this}}</a>
+          {{/each}}
         </div>
-        {{/if}}
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-header">
+              Load Levels (%)
+            </div>
+            <div class="card-body"> 
+              <input type="hidden" id="binsLoadData" value="{{binsLoad}}">
+              <canvas id="myChart1"></canvas>                
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-header">
+              Humidity Levels (%)
+            </div>
+            <div class="card-body"> 
+              <input type="hidden" id="binsHumidityData" value="{{binsHumidity}}">
+              <canvas id="myChart2"></canvas>                
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-header">
+              Temperature Levels (°C)
+            </div>
+            <div class="card-body"> 
+              <input type="hidden" id="binsTempData" value="{{binsTemp}}">
+              <canvas id="myChart3"></canvas>                
+            </div>
+          </div>
+        </div>
+
+      </div>
+      {{/if}}
+      {{#if binID}}
+        <h3>Selected bin: {{binID}}</h3>
+      {{/if}}
+
     </div>
   </div>
 </div>

@@ -65,6 +65,15 @@ router.get("/admin/statistics",
     AdminController.getStatistics
 )
 
+router.get("/admin/predictions",
+    UserController.checkIfAuthenticated,
+    AdminController.checkIfAuthenticatedAdmin,
+    AdminController.totalBins,
+    AdminController.getStatistics,
+    AdminController.getPredictions,
+
+)
+
 
 
 router.get("/profile",

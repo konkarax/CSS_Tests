@@ -45,3 +45,21 @@ body {
 .main-container {
   padding: 20px;
 }
+
+
+.bin-id-list {
+  background-color: #f0f0f0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.bin-id-link {
+  text-decoration: none;
+  color: #353536;
+  margin-right: 5px; 
+}
+
+.bin-id-link:last-child {
+  margin-right: 0;
+}
