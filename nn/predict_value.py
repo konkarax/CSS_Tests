@@ -29,18 +29,17 @@ input = sys.argv[1]
 input_array = input.split(",")
 
 load_array= [int(input_array[0]),int(input_array[1]),int(input_array[2]),int(input_array[3]),int(input_array[4])]
-hum_array= [int(input_array[6]),int(input_array[7]),int(input_array[8]),int(input_array[9]),int(input_array[10])]
-temp_array= [int(input_array[12]),int(input_array[13]),int(input_array[14]),int(input_array[15]),int(input_array[16])]
+temp_array= [int(input_array[6]),int(input_array[7]),int(input_array[8]),int(input_array[9]),int(input_array[10])]
+hum_array= [int(input_array[12]),int(input_array[13]),int(input_array[14]),int(input_array[15]),int(input_array[16])]
 
 
 load_tensor_test = torch.tensor([load_array], dtype=torch.float32)
 predicted_load = load_model(load_tensor_test).item()
 
 hum_tensor_test = torch.tensor([hum_array], dtype=torch.float32)
-predicted_hum = load_model(hum_tensor_test).item()
+predicted_hum = hum_model(hum_tensor_test).item()
 
 temp_tensor_test = torch.tensor([temp_array], dtype=torch.float32)
-predicted_temp = load_model(temp_tensor_test).item()
-
+predicted_temp = temp_model(temp_tensor_test).item()
 
 print(int(predicted_load),int(predicted_hum),int(predicted_temp))
