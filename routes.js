@@ -62,7 +62,11 @@ router.get("/admin/statistics",
     UserController.checkIfAuthenticated,
     AdminController.checkIfAuthenticatedAdmin,
     AdminController.totalBins,
+    // AdminController.IntervalStatistic,
+    // RoutesController.getScenario,
     AdminController.getStatistics
+    
+    
 )
 
 router.get("/admin/predictions",
@@ -70,6 +74,7 @@ router.get("/admin/predictions",
     AdminController.checkIfAuthenticatedAdmin,
     AdminController.totalBins,
     AdminController.getStatistics,
+    // RoutesController.getScenario,
     AdminController.getPredictions,
 
 )
@@ -98,91 +103,6 @@ router.get("/addUser",
         console.log("in addUser after authenticated")
     res.render("addDriver")
 })
-
-// router.post("/doAddUser",
-//     UserController.checkIfAuthenticated,
-//     AdminController.checkIfAuthenticatedAdmin,
-//     AdminController.adminDoAddUser,
-//     AdminController.findAllUsers,
-//     (req, res) => {
-//         console.log(req.body),
-//         res.render("adminShowUsers", { message: req.message, users: req.users })
-//     }
-// )
-
-// router.get("/adminDeleteUser",
-//     UserController.checkIfAuthenticated,
-//     AdminController.checkIfAuthenticatedAdmin,
-//     AdminController.adminDeleteUser,
-//     AdminController.findAllUsers, 
-//     (req,res) => {
-//     res.render("adminShowUsers", { users: req.users })
-// })
-
-//show, add & delete bookings
-// router.get("/adminShowBookings",
-//     UserController.checkIfAuthenticated,
-//     AdminController.checkIfAuthenticatedAdmin,
-//     AdminController.findAllBookings, 
-//     (req,res) => {
-//     res.render("adminShowBookings", { bookings: req.bookings })
-// })
-
-// router.get("/adminAddBooking", (req, res) => {
-//     UserController.checkIfAuthenticated,
-//     AdminController.checkIfAuthenticatedAdmin,
-//     res.render("adminAddBooking")
-// })
-
-// router.post("/adminDoAddBooking",
-//     UserController.checkIfAuthenticated,
-//     AdminController.checkIfAuthenticatedAdmin,
-//     AdminController.adminDoAddBooking,
-//     AdminController.findAllBookings,
-//     (req, res) => {
-//         res.render("adminShowBookings",{ message:req.message, bookings: req.bookings })
-//     }
-// )
-
-// router.get("/adminDeleteBooking",
-//     UserController.checkIfAuthenticated,
-//     AdminController.checkIfAuthenticatedAdmin,
-//     AdminController.adminDeleteBooking,
-//     AdminController.findAllBookings, 
-//     (req,res) => {
-//     res.render("adminShowBookings", { bookings: req.bookings })
-// })
-
-// router.get("/adminEditBooking",
-//     UserController.checkIfAuthenticated,
-//     AdminController.checkIfAuthenticatedAdmin,
-//     AdminController.getBookingInfo,
-//     (req, res) => {
-//         res.render("adminEditBooking", { bookingInfo: req.bookingInfo })
-//     }
-// )
-
-// router.post("/adminDoEditBooking",
-//     UserController.checkIfAuthenticated,
-//     AdminController.checkIfAuthenticatedAdmin,
-//     AdminController.adminDoEditBooking,
-//     AdminController.findAllBookings,
-//     (req, res) => {
-//         res.render("adminShowBookings", { bookings: req.bookings })
-//     }
-// )
-
-
-// router.get("/adminShowRooms",
-//     UserController.checkIfAuthenticated,
-//     AdminController.checkIfAuthenticatedAdmin,
-//     AdminController.findAllRooms,
-//     (req, res) => {
-//         res.render("adminShowRooms", { rooms: req.rooms })
-//     }
-// )
-
-
 
 
 //----------------Scenarios----------------//

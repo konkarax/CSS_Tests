@@ -2,8 +2,6 @@ const Admin = require('../model/admin-model.js');
 
 
 const checkIfAuthenticatedAdmin = async(req, res, next) => { //dinoume access ston admin gia tis selides tou
-    console.log("Admin-session: ", req.session)
-    console.log("Admin-username: ", req.session.username)
     if(req.session.username == 'admin'){
         next()
     }
@@ -21,7 +19,6 @@ const totalBins = async(req,res,next)=>{
 
         if (req.query.scenarioId){
             console.log("Scenario statistics was selected")
-            // req.query.scenId=req.query.scenarioId
             req.query.bins = binsNum
             next()
         }
@@ -47,9 +44,7 @@ const getStatistics = async (req, res, next) => {
         const loadData = binsData.loads
         const humidityData = binsData.humidity
         const tempData = binsData.temperature
-        console.log('controller: bins',binsData)
-        console.log('controller: load',loadData)
-        console.log('controller: humidity',humidityData)
+        console.log('controller: bins count load, hum, temp ',binsData)
 
         const binsIds = await Admin.getBinsId(scenarioId)
         console.log("Ids: ", binsIds)
@@ -70,7 +65,7 @@ const getStatistics = async (req, res, next) => {
 
 
     } catch (error) {
-        next(error)
+        throw error
     }
 };
 
@@ -85,23 +80,29 @@ const getPredictions = async (req, res, next) => {
 
         const scenarioId = req.query.scenarioId
         const binId = req.query.binId
-        console.log("scenario Id in getStatistics: ", scenarioId)
+        console.log("scenario Id in getPredictions: ", scenarioId)
         console.log("Selected bin Id: ", binId)
 
-        //xreiazomaste gia ton binId 2 dataset ana graph: real,predicted values
-        //sto .js stelnw
-        //eite pinakas me realData=[load,humidity,temp] antistoixa predicted k ta jexwrizw ekei
-        //eite realLoad, predictedLoad k omoia gia ta upoloipa k ta exei etoima
-
         const realData = await Admin.getRealData(scenarioId,binId)
-        // console.log("realData: ", realData)
-        // console.log("Ids: ", binsIds)
-        res.render("admin",{bins:binsNum, binsLoad:JSON.stringify(loadData), binsHumidity:JSON.stringify(humidityData),binsTemp:JSON.stringify(tempData), binsIds:binsIds,scenarioID:scenarioId,binID:binId,realData:realData}) 
+        const predictedData = await Admin.getPredictedData(scenarioId,binId)
+
+        console.log("controller realData: ", realData)
+        console.log("controller realData: ", predictedData)
+        res.render("admin",{bins:binsNum, binsLoad:JSON.stringify(loadData), binsHumidity:JSON.stringify(humidityData),binsTemp:JSON.stringify(tempData), 
+                            binsIds:binsIds,scenarioID:scenarioId,binID:binId,realDataLoad:realData.load, realDataHum:realData.humidity, realDataTemp:realData.temperature,
+                            predDataLoad:predictedData.load, predDataHum:predictedData.humidity, predDataTemp:predictedData.temperature}) 
 
     } catch (error) {
         next(error)
     }
 };
+
+
+
+
+
+
+
 
 
 // const findAllUsers = async (req, res, next) => {
@@ -250,5 +251,6 @@ module.exports = {
     checkIfAuthenticatedAdmin,
     totalBins,
     getStatistics,
-    getPredictions
+    getPredictions,
+    
   };

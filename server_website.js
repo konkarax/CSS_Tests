@@ -22,7 +22,7 @@ const WasteManagementSession = session({
 
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5500;
 //sessions
 app.use(WasteManagementSession);
 

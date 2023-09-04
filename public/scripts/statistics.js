@@ -8,10 +8,16 @@ document.addEventListener('DOMContentLoaded', async function() {
     const binsTempInput = document.getElementById('binsTempData');
     const binsTemp = JSON.parse(binsTempInput.value);
 
-    const realDataInput = document.getElementById('realData');      
+    const realDataLoadInput = document.getElementById('realDataLoad');      
+    const realDataHumInput = document.getElementById('realDataHum');   
+    const realDataTempInput = document.getElementById('realDataTemp');   
+
+    const predDataLoadInput = document.getElementById('predDataLoad');      
+    const predDataHumInput = document.getElementById('predDataHum');   
+    const predDataTempInput = document.getElementById('predDataTemp');  
 
     initializeCharts(binsLoad,binsHumidity,binsTemp)
-    initializeCharts2(realDataInput)    
+    initializeCharts2(realDataLoadInput,realDataHumInput, realDataTempInput, predDataLoadInput, predDataHumInput, predDataTempInput)    
     
 
     // const scenario2Radio = document.getElementById('scenario2');
@@ -106,32 +112,46 @@ document.addEventListener('DOMContentLoaded', async function() {
     
     }
     
-    function initializeCharts2(realDataInput){  
+    function initializeCharts2(realLoadInput, realHumInput,realTempInput,predLoadInput,predHumInput,predTempInput){  
+        const realLoad = realLoadInput.value.split(",");   
+        const realHum = realHumInput.value.split(",");   
+        const realTemp = realTempInput.value.split(",");   
 
-        const [load, hum, temp] = realDataInput.value.split(',').map(Number)
-        console.log("realData: ", realDataInput)
-        console.log("load hum temp: ", load, hum, temp)
+        const predictedLoad = predLoadInput.value.split(",");   
+        const predictedHum = predHumInput.value.split(",");   
+        const predictedTemp = predTempInput.value.split(",");   
+
+        
+        console.log("load hum temp: ", realLoad, realHum, realTemp)
+        console.log("load hum temp: ", predictedLoad, predictedHum, predictedTemp)
 
         const chartCanvas4 = document.getElementById('myChart4');
         const chartCanvas5 = document.getElementById('myChart5');
         const chartCanvas6 = document.getElementById('myChart6');
         const ctx4 = chartCanvas4.getContext('2d');
+
+        const time = []
+        for (i=0;  i<realLoad.length+1 ; i++){
+            time.push(i)
+        }
+
         new Chart(ctx4, {
             type: "line",
             data: {
-            datasets: [{
-                data: [32],
-                borderColor: "red",
-                fill: false
-            },{
-                data: [1600,1700,1700,1900,2000,2700,4000,5000,6000,7000],
-                borderColor: "green",
-                fill: false
-            }]
-            },
-            options: {
-            legend: {display: false},
-            animation:{duration:0}
+                labels: time, 
+                datasets: [{
+                    data: realLoad,
+                    borderColor: "red",
+                    fill: false
+                },{
+                    data: predictedLoad,
+                    borderColor: "green",
+                    fill: false
+                }]
+                },
+                options: {
+                legend: {display: false},
+                animation:{duration:0}
             }
         });
 
@@ -139,19 +159,20 @@ document.addEventListener('DOMContentLoaded', async function() {
         new Chart(ctx5, {
             type: "line",
             data: {
-            datasets: [{
-                data: [860,1140,1060,1060,1070,1110,1330,2210,7830,2478],
-                borderColor: "red",
-                fill: false
-            },{
-                data: [1600,1700,1700,1900,2000,2700,4000,5000,6000,7000],
-                borderColor: "green",
-                fill: false
-            }]
-            },
-            options: {
-            legend: {display: false},
-            animation:{duration:0}
+                labels: time,
+                datasets: [{
+                    data: realHum,
+                    borderColor: "red",
+                    fill: false
+                },{
+                    data: predictedHum,
+                    borderColor: "green",
+                    fill: false
+                }]
+                },
+                options: {
+                legend: {display: false},
+                animation:{duration:0}
             }
         });
 
@@ -159,19 +180,20 @@ document.addEventListener('DOMContentLoaded', async function() {
         new Chart(ctx6, {
             type: "line",
             data: {
-            datasets: [{
-                data: [860,1140,1060,1060,1070,1110,1330,2210,7830,2478],
-                borderColor: "red",
-                fill: false
-            },{
-                data: [1600,1700,1700,1900,2000,2700,4000,5000,6000,7000],
-                borderColor: "green",
-                fill: false
-            }]
-            },
-            options: {
-            legend: {display: false},
-            animation:{duration:0}
+                labels: time,
+                datasets: [{
+                    data: realTemp,
+                    borderColor: "red",
+                    fill: false
+                },{
+                    data: predictedTemp,
+                    borderColor: "green",
+                    fill: false
+                }]
+                },
+                options: {
+                legend: {display: false},
+                animation:{duration:0}
             }
         });
     }

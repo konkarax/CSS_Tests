@@ -6,9 +6,9 @@
       <h3 >Dashboard</h3>
       <ul>
         <li><a href="/addUser">Add Driver</a></li>
-        <li><a href="/scenario?id=1" > Scenario 1</a></li>
-        <li><a href="/scenario?id=2">Scenario 2</a></li>
-        <li><a href="/scenario?id=3">Scenario 3</a></li>
+        <li><a href="/scenario?scenarioId=1" > Scenario 1</a></li>
+        <li><a href="/scenario?scenarioId=2">Scenario 2</a></li>
+        <li><a href="/scenario?scenarioId=3">Scenario 3</a></li>
       </ul>
     </div>
 
@@ -90,15 +90,22 @@
 
       {{#if binID}}
         <h3>Selected bin: {{binID}}</h3> 
-        <h3> bin's real data: {{realData}}</h3>
+        <h3> bin's real data: {{realDataLoad}} {{realDataHum}} {{realDataTemp}}</h3> 
+        <h3> bin's pred data: {{predDataLoad}} {{predDataHum}} {{predDataTemp}}</h3> 
+        
+        <input type="hidden" id="realDataLoad" value="{{realDataLoad}}">
+        <input type="hidden" id="realDataHum" value="{{realDataHum}}">
+        <input type="hidden" id="realDataTemp" value="{{realDataTemp}}">
 
-        <input type="hidden" id="realData" value="{{realData}}">
+        <input type="hidden" id="predDataLoad" value="{{predDataLoad}}">
+        <input type="hidden" id="predDataHum" value="{{predDataHum}}">
+        <input type="hidden" id="predDataTemp" value="{{predDataTemp}}">
 
         <div class="row">
         <div class="col-md-4">
           <div class="card">
             <div class="card-header">
-              Test Bin {{binID}} Load (%)
+              Bin {{binID}} Load (%)
             </div>
             <div class="card-body"> 
               {{!-- <input type="hidden" id="binLoadData" value="{{binsLoad}}"> --}}

@@ -88,8 +88,7 @@ async function getBinsId(scenario){
         const truckCollection = scenario.collection("trucks")
         const truckData = await truckCollection.find({}).toArray();
         const truckRoute = truckData[0].route
-        console.log("truckData: ", truckData)
-        console.log("truckRoute: ", truckRoute)
+        // console.log("truckRoute: ", truckRoute)
 
         const ids=[]
         for (id of truckRoute){
@@ -111,26 +110,26 @@ async function getRealData(scenario,bin){
     try {
         const conn = await client.connect()
 
-        if (scenario=='1'){
-            scenario = conn.db("scenario_1")
-        }
-        else if (scenario=='2'){
-            scenario = conn.db("scenario_2")
-        }
-        else if(scenario=='3'){
-            scenario = conn.db("scenario_3")
-        }
+        // if (scenario=='1'){
+        //     scenario = conn.db("scenario_1")
+        // }
+        // else if (scenario=='2'){
+        //     scenario = conn.db("scenario_2")
+        // }
+        // else if(scenario=='3'){
+        //     scenario = conn.db("scenario_3")
+        // }
 
-        const bins = scenario.collection("bins")
-        const load = await bins.aggregate([{$match: { _id: bin }},{$project: {_id: 0,load: "$binLoad"}}]).toArray()
-        const humidity = await bins.aggregate([{$match: { _id: bin }},{$project: {_id: 0,humidity: "$humidity"}}]).toArray()
-        const temp = await await bins.aggregate([{$match: { _id: bin }},{$project: {_id: 0,temperature: "$temperature"}}]).toArray()
+        scenario = conn.db("waste_managment")
+        const realValuesData = scenario.collection("real_values")
+
+        const binData = await realValuesData.aggregate([{$match: { _id: parseInt(bin) }},{$project: {_id: 0,load:1,temperature:1,humidity:1}}]).toArray()
+        console.log("real Data: ", binData[0])
+        const loadT = binData[0].load;
+        console.log("real load_test: ", loadT)
+
         
-        const data = [load[0].load,humidity[0].humidity,temp[0].temperature]
-        console.log("model-data: ", data)
-        console.log("load: ", load)
-        
-        return data
+        return binData[0]
 
     } catch (error) {
 
@@ -139,6 +138,26 @@ async function getRealData(scenario,bin){
 }
 
 
+async function getPredictedData(scenario,bin){
+    try {
+        const conn = await client.connect()
+
+        scenario = conn.db("waste_managment")
+        const predictedValuesData = scenario.collection("predict_values")
+
+        const binData = await predictedValuesData.aggregate([{$match: { _id: parseInt(bin) }},{$project: {_id: 0,load:1,temperature:1,humidity:1}}]).toArray()
+        console.log("predicted Data: ", binData[0])
+        const loadT = binData[0].load;
+        console.log("predicted load_test: ", loadT)
+
+        
+        return binData[0]
+
+    } catch (error) {
+
+        throw error
+    }
+}
 
 // async function getBinsLoad(scenario){
 //     try {
@@ -193,5 +212,6 @@ module.exports =  {
                     getBins,
                     getBinsData,
                     getBinsId,
-                    getRealData
+                    getRealData,
+                    getPredictedData
                     }

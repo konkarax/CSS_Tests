@@ -35,7 +35,7 @@ async function loadScenario(scenario){
     collection_values = db.collection("real_values");
     collection_predictions = db.collection("predict_values"); 
 
-
+    console.log("scenario: ", scenario, typeof(scenario))
     if (scenario=='1'){
         scenario = conn.db("scenario_1");
     }
@@ -116,7 +116,8 @@ async function moveTruck(target_list){
     }
     else{
         
-        console.log("reached");
+        try{
+            console.log("reached");
         await collection_trucks.updateOne({_id:1},{$set:{'pos_x':target[0],'pos_y':target[1]}});
 
         if (target[2]>0){
@@ -204,6 +205,9 @@ async function moveTruck(target_list){
         }
 
         idx = (idx+1)%target_list.length;
+        }catch(error){
+            throw error
+        }
         
         
     }

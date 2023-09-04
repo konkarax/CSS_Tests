@@ -42,18 +42,12 @@ const doLogout = (req, res, next) => {
 }
 
 function checkIfAuthenticated(req, res, next) {
-    console.log("session: ", req.session)
     
-    if (req.session.username) { 
-        console.log("username: ", req.session.username)
+    if (req.session.username) {
         res.locals.username = req.session.username
-        console.log("locals-username: ", res.locals.username)
-    }
-    else{
-        console.log("no-req.session..username")
     }
     
-    console.log(req.session)
+    
     next() 
 }
 
