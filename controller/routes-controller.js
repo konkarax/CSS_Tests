@@ -19,7 +19,7 @@ class Route{
 var new_request;
 const getScenario = async (req, res, next) => {
 
-    const scenario = req.query.id
+    const scenario = req.query.scenarioId
 
     if(new_request){
         new_request.endLoop();
