@@ -56,11 +56,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                 legend:{display:false},
                 responsive: true,
                 maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
+                animation:{duration:0}
             }
         });
     
@@ -82,11 +78,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                 legend:{display:false},
                 responsive: true,
                 maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
+                animation:{duration:0}
             }
         });
         
@@ -108,11 +100,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                 legend:{display:false},
                 responsive: true,
                 maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
+                animation:{duration:0}
             }
         });
     
@@ -142,7 +130,8 @@ document.addEventListener('DOMContentLoaded', async function() {
             }]
             },
             options: {
-            legend: {display: false}
+            legend: {display: false},
+            animation:{duration:0}
             }
         });
 
@@ -161,7 +150,8 @@ document.addEventListener('DOMContentLoaded', async function() {
             }]
             },
             options: {
-            legend: {display: false}
+            legend: {display: false},
+            animation:{duration:0}
             }
         });
 
@@ -180,7 +170,8 @@ document.addEventListener('DOMContentLoaded', async function() {
             }]
             },
             options: {
-            legend: {display: false}
+            legend: {display: false},
+            animation:{duration:0}
             }
         });
     }

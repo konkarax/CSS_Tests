@@ -85,10 +85,19 @@ async function getBinsId(scenario){
             scenario = conn.db("scenario_3")
         }
 
-        const bins = scenario.collection("bins")
-        const binsArray = await bins.aggregate([{$project: {_id: 1}}]).toArray()
-        const ids = binsArray.map(bin => parseInt(bin._id))               
-        
+        const truckCollection = scenario.collection("trucks")
+        const truckData = await truckCollection.find({}).toArray();
+        const truckRoute = truckData[0].route
+        console.log("truckData: ", truckData)
+        console.log("truckRoute: ", truckRoute)
+
+        const ids=[]
+        for (id of truckRoute){
+            if(id[2]>0){
+                ids.push(id[2])
+            }
+        }
+
         return ids
 
     } catch (error) {

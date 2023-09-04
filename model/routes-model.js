@@ -14,6 +14,7 @@ let db;
 let collection_trucks;
 let collection_bins;
 let collection_values;
+let collection_predictions;
 var bins_list;
 var load_array=[];
 var temp_array=[];
@@ -31,7 +32,8 @@ async function loadScenario(scenario){
     collection_bins = db.collection('bins');
     //data_bins = await collection_bins.find({}).toArray();
 
-    collection_values = db.collection("predict_values");
+    collection_values = db.collection("real_values");
+    collection_predictions = db.collection("predict_values"); 
 
 
     if (scenario=='1'){
@@ -58,6 +60,7 @@ async function loadScenario(scenario){
     await collection_bins.insertMany(scenario_bins_data);
 
     collection_values.deleteMany({});
+    collection_predictions.deleteMany({});
 
     var i;
     bins_list=[];
@@ -73,6 +76,7 @@ async function loadScenario(scenario){
             temp_array.push([bin[0].temperature,bin[0].temperature,bin[0].temperature,bin[0].temperature]);
             hum_array.push([bin[0].humidity,bin[0].humidity,bin[0].humidity,bin[0].humidity]);
             await collection_values.insertOne({_id:bin_num,load:[],temperature:[],humidity:[]});  
+            await collection_predictions.insertOne({_id:bin_num,load:[bin[0].binLoad],temperature:[bin[0].temperature],humidity:[bin[0].humidity]}); 
         }
     }
 
@@ -134,6 +138,7 @@ async function moveTruck(target_list){
                 temp_array[i].push(temperature);
                 hum_array[i].push(humidity);
 
+
                 size = load_array[i].length;
                 const load_5=[load_array[i][size-5],load_array[i][size-4],load_array[i][size-3],load_array[i][size-2],load_array[i][size-1]];
                 const temp_5=[temp_array[i][size-5],temp_array[i][size-4],temp_array[i][size-3],temp_array[i][size-2],temp_array[i][size-1]];
@@ -150,22 +155,20 @@ async function moveTruck(target_list){
 
                 //To predict value
                 const python_file = "./nn/predict_value.py";
-                // const input = [load_5,bins_inc,temp_5,temp_inc,hum_5,hum_inc];
-                // const python_process = spawn('python',[python_file,input]) 
+ 
                 const input = [load_5, bins_inc, temp_5, temp_inc, hum_5, hum_inc];
                 const python_process = spawn('python', [pythonFile, input]);
-                // const python_process = spawn(pythonExecutable, [pythonFile, input]);
                 
                 python_process.stderr.on('data', function(data) {
                     console.log('stdout: ' +data);
                   });
-                python_process.stdout.on('data', (data) => {
-                    console.log('Output:', data.toString());
+
+                python_process.stdout.on('data', async(data) => {
+                    var values = data.toString().split(" ");
+                    await collection_predictions.updateOne({'_id':parseInt(id)},{$push:{'load':parseInt(values[0]),'temperature':parseInt(values[2]),'humidity':parseInt(values[1])}});
                 });
-
-
-                await collection_values.updateOne({'_id':id},{$push:{'load':load,'temperature':temperature,'humidity':humidity}});
-
+                await collection_values.updateOne({'_id':parseInt(id)},{$push:{'load':load,'temperature':temperature,'humidity':humidity}});
+                
                 // const bins_inc = parseInt(Math.random()*4+5);
                 // const temp_inc = parseInt(Math.random()*4)-1;
                 // const hum_inc = parseInt(Math.random()*7)-2;
