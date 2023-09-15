@@ -105,34 +105,35 @@ const getPredictions = async (req, res, next) => {
 
 
 
-// const findAllUsers = async (req, res, next) => {
-//     const users = await seqObj.User.findAll()
-//     const sanitized_users = users.map( entry => entry.dataValues)
-//     req.users = sanitized_users
-//     next()
-// }
+const showDrivers = async (req, res, next) => {
+    const users = await Admin.findAllDrivers() //synarthsh srto moedel pou episterefei olous tous users apo th bash
+    // const sanitized_users = users.map( entry => entry.dataValues)
+    req.users = users
+    next()
+}
 
-// const adminDoAddUser = async (req, res, next) => {
-//     try{
-//         console.log(req.body)
+const adminAddDriver = async (req, res, next) => {
+    try{
+        console.log(req.body)
 
-//         await Admin.addUser({
-//             // "userID": req.body["userID"],
-//             "firstName": req.body["firstName"],
-//             "lastName": req.body["lastName"],
-//             "email":req.body["email"],
-//             "address": req.body["address"],
-//             "phone_number": req.body["phone_number"],
-//         })
-//         console.log("perase")
-//         res.locals.message = 'User Added!'
-//         // req.message = 'User Added!'
-//         next()
-//     } catch(error){
-//             res.locals.message = 'Failed to add User'
-//         // req.message = 'Failed to add User!'
-//     }
-// }
+        await Admin.addDriver({
+            // "userID": req.body["userID"],
+            "username": req.body["username"],
+            "password": req.body["password"],
+            "email":req.body["email"],
+            "phone": req.body["phone"],
+            "scenario": req.body["scenarioId"],
+        })
+        console.log("perase")
+        // res.render("home")
+        res.locals.message = 'User Added!'
+        // req.message = 'User Added!'
+        next()
+    } catch(error){
+            res.locals.message = 'Failed to add User'
+        // req.message = 'Failed to add User!'
+    }
+}
 
 // const adminDeleteUser = async(req, res, next) => {
 //     try{
@@ -249,6 +250,8 @@ module.exports = {
     // adminDeleteBooking,
     // adminDoEditBooking,
     checkIfAuthenticatedAdmin,
+    adminAddDriver,
+    showDrivers,
     totalBins,
     getStatistics,
     getPredictions,

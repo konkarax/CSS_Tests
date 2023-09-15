@@ -43,7 +43,16 @@ async function getBinsData(scenario){
             scenario = conn.db("scenario_3")
         }
 
+        scenario = conn.db("waste_managment")
+
+        // const binCsollection = scenario1.collection("bins")
+        // const binsData = await binCsollection.find({}).toArray();
+        // console.log("binsData: ",binsData)
+
         const bins = scenario.collection("bins")
+
+        // const bins = scenario.collection("bins")
+        // console.log("bins: ", bins)
         
         const greenBins = await bins.countDocuments({"binLoad": { $lte: 40 }})        
         const orangeBins = await bins.countDocuments({"binLoad": { $gt: 40, $lte: 80 }})
@@ -57,6 +66,7 @@ async function getBinsData(scenario){
         const OlevelsTemp = await bins.countDocuments({"temperature": { $gt: 40, $lte: 45 }})
         const RlevelsTemp = await bins.countDocuments({"temperature": { $gt: 45 }})
 
+        // console.log("Collections, waste: ",greenBinstest, greenBins)
         const data = {
             loads: [greenBins, orangeBins, redBins],
             humidity: [GlevelsHum, OlevelsHum, RlevelsHum],
@@ -204,7 +214,39 @@ async function getPredictedData(scenario,bin){
 //     }
 // }
 
+async function addDriver(newDriver){
+    try {
+        console.log("Driver Data: ",newDriver )
+        const conn = await client.connect();
+        const db = conn.db("waste_managment");
 
+        const collection = db.collection("users");
+
+        const count = await collection.countDocuments({})
+        newDriver["_id"] = count+1;;
+        await collection.insertOne(newDriver);
+
+    } catch (error) {
+
+        throw error
+    }
+}
+
+async function findAllDrivers(){
+    try{
+        const conn = await client.connect();
+        const db = conn.db("waste_managment");
+
+        const collection = db.collection("users");
+        const result = await collection.find({}).toArray();
+        console.log("users: ", result.slice(1));
+        return result.slice(1);
+
+    }catch (error) {
+
+        throw error
+    }
+}
     
 
 
@@ -213,5 +255,7 @@ module.exports =  {
                     getBinsData,
                     getBinsId,
                     getRealData,
-                    getPredictedData
+                    getPredictedData,
+                    addDriver,
+                    findAllDrivers
                     }
