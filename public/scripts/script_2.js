@@ -1,5 +1,5 @@
 async function LiveUpdate(init){
-  //show trucks
+  //show trucks and waste station
   await fetch("http://localhost:5000/get_trucks/").then(response=>response.json()).then(truck=>{
       
     for (var i=0;i<truck.length;i++){
@@ -29,7 +29,19 @@ async function LiveUpdate(init){
           if (bin_num>0){
             bins_list.push(bin_num);
           }
+          else if (bin_num==-1){
+            const hq_x = truck[i].route[j][0];
+            const hq_y = truck[i].route[j][1];
+            const hqLatLng = new google.maps.LatLng(hq_x,hq_y);
+            const hqIcon = "/icons/factory.png"; 
+
+            hq_marker=new google.maps.Marker({position: hqLatLng,icon:hqIcon,size:new google.maps.Size(5,8)});
+            hq_marker.setMap(map);
+
+            hq_infowindow= new google.maps.InfoWindow({content:"Waste Station"});
+          }
         }
+        
       }
       else{
         tr_marker[i].setPosition(truckLatlng);
@@ -47,16 +59,18 @@ for (let i=0;i<tr_marker.length;i++){
   });
 }
 
+google.maps.event.addListener(hq_marker,"click", () =>{
+  hq_infowindow.close();
+  hq_infowindow.open(map,hq_marker);
+});
+
 
     //show bins
     await fetch("http://localhost:5000/get_bins/").then(response=>response.json()).then(bin=>{
       for (var i=0;i<bin.length;i++){
-        if(bins_list.includes(parseInt(bin[i]._id))==false){
-          //continue;
-        }
 
-        var x=bin[i].location.coordinates[0]
-        var y=bin[i].location.coordinates[1]
+        var x=bin[i].location[0]
+        var y=bin[i].location[1]
     
         var myLatlng = new google.maps.LatLng(x,y);
     
@@ -94,11 +108,11 @@ for (let i=0;i<tr_marker.length;i++){
         infowindow[i].setContent("Bin Id: "+String(bin[i]._id)+ " Bin Load:"+String(bin[i].binLoad)+
                                   " Temperature: "+ String(bin[i].temperature+ " Humidity: "+String(bin[i].humidity)));
         
-        if(bin[i].temperature>50) {
+        if(bin[i].temperature>=50) {
           infowindow[i].setContent("High Temperature Warning");
         }
 
-        if(bin[i].humidity>70) {
+        if(bin[i].humidity>=70) {
           infowindow[i].setContent("High Humidity Warning");
         }
 
@@ -138,8 +152,10 @@ map = new google.maps.Map(element,options);
 
 var marker=[];
 var tr_marker=[];
+var hq_marker;
 var infowindow=[]; 
 var tr_infowindow=[];
+var hq_infowindow;
 var bin=[];
 
 var bins_list=[];

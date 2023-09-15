@@ -95,14 +95,49 @@ router.get("/profile",
     }
 )
 
+
     
-router.get("/addUser",     
+// router.get("/addUser",     
+//     UserController.checkIfAuthenticated,
+//     AdminController.checkIfAuthenticatedAdmin,
+//     (req, res) => {
+//         console.log("in addUser after authenticated")
+//     res.render("addDriver")
+// })
+
+// router.post("/doAddDriver",     
+//     UserController.checkIfAuthenticated,
+//     AdminController.checkIfAuthenticatedAdmin,
+//     AdminController.adminAddDriver,
+//     AdminController.showDrivers
+//     // (req, res) => {res.render("home")}
+// )
+
+
+router.get("/adminShowUsers", 
+    UserController.checkIfAuthenticated,
+    AdminController.checkIfAuthenticatedAdmin,  
+    AdminController.showDrivers, 
+    (req,res) => {
+    res.render("drivers", {users: req.users})
+})
+
+router.get("/addUser", (req, res) => {
     UserController.checkIfAuthenticated,
     AdminController.checkIfAuthenticatedAdmin,
-    (req, res) => {
-        console.log("in addUser after authenticated")
     res.render("addDriver")
 })
+
+router.post("/doAddDriver",
+    UserController.checkIfAuthenticated,
+    AdminController.checkIfAuthenticatedAdmin,
+    AdminController.adminAddDriver,
+    AdminController.showDrivers,
+    (req, res) => {
+        console.log(req.body),
+        res.render("drivers", { message: req.message, users: req.users })
+    }
+)
 
 
 //----------------Scenarios----------------//

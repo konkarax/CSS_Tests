@@ -29,8 +29,8 @@ input = sys.argv[1]
 input_array = input.split(",")
 
 load_array= [int(input_array[0]),int(input_array[1]),int(input_array[2]),int(input_array[3]),int(input_array[4])]
-temp_array= [int(input_array[6]),int(input_array[7]),int(input_array[8]),int(input_array[9]),int(input_array[10])]
-hum_array= [int(input_array[12]),int(input_array[13]),int(input_array[14]),int(input_array[15]),int(input_array[16])]
+temp_array= [int(input_array[5]),int(input_array[6]),int(input_array[7]),int(input_array[8]),int(input_array[9])]
+hum_array= [int(input_array[10]),int(input_array[11]),int(input_array[12]),int(input_array[13]),int(input_array[14])]
 
 
 load_tensor_test = torch.tensor([load_array], dtype=torch.float32)
