@@ -12,9 +12,6 @@ function handleBinLinkClick(event) {
 
     console.log("new-link: ", newURL)
     window.location.href = newURL;
-    // // Update the current URL without triggering a GET request
-    // window.history.pushState({}, '', newURL);
-    //scenarioForm.submit();
   }
   
   

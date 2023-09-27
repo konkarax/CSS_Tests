@@ -1,9 +1,12 @@
-async function LiveUpdate(init){
+async function LiveUpdate(init,temp_in_senario){
   //show trucks and waste station
+  var bin_in_senario;
   await fetch("http://localhost:5000/get_trucks/").then(response=>response.json()).then(truck=>{
       
     for (var i=0;i<truck.length;i++){
       var x,y;
+      bin_in_senario = truck[i].route.length;
+      console.log(bin_in_senario)
       if (init==true){
         x=truck[i].start_x;
         y=truck[i].start_y;
@@ -25,6 +28,10 @@ async function LiveUpdate(init){
 
 
         for (var j=0;j<truck[i].route.length;j++){
+
+          var route_xy = new google.maps.LatLng(truck[i].route[j][0],truck[i].route[j][1]);
+          coords.push(route_xy) 
+
           const bin_num = truck[i].route[j][2];
           if (bin_num>0){
             bins_list.push(bin_num);
@@ -47,6 +54,38 @@ async function LiveUpdate(init){
         tr_marker[i].setPosition(truckLatlng);
         tr_infowindow[i].setContent("Truck Load:"+String(truck[i].truckLoad))
       } 
+
+      
+        
+      if (temp_in_senario!=bin_in_senario && init==false){
+        coords = [];
+        bins_list =[];
+        for (var j=0;j<truck[i].route.length;j++){
+          if (truck[i].route[j][2]>0){
+            bins_list.push(truck[i].route[j][2]);
+
+          }
+          
+          var route_xy = new google.maps.LatLng(truck[i].route[j][0],truck[i].route[j][1]);
+          coords.push(route_xy);
+        }
+        coords.push(coords[0]);
+        line.setPath(coords);
+
+
+      }
+
+      if (init==true){
+        coords.push(coords[0])
+        line= new google.maps.Polyline({
+          path: coords,
+          strokeColor: '#0000FF',
+          strokeOpacity: 0.7,
+          strokeWeight: 2
+        });
+
+        line.setMap(map);
+      }
     
       
   }
@@ -64,7 +103,7 @@ google.maps.event.addListener(hq_marker,"click", () =>{
   hq_infowindow.open(map,hq_marker);
 });
 
-
+  
     //show bins
     await fetch("http://localhost:5000/get_bins/").then(response=>response.json()).then(bin=>{
       for (var i=0;i<bin.length;i++){
@@ -87,8 +126,6 @@ google.maps.event.addListener(hq_marker,"click", () =>{
         myIcon = myIcon +".png"
 
         if (bin[i].alert==true) myIcon="/icons/alert.png";
-
-        
     
         
         if (init==true){
@@ -128,11 +165,9 @@ google.maps.event.addListener(hq_marker,"click", () =>{
       }
      
     }
-
-
     
     console.log("fetch");
-    setTimeout(LiveUpdate,3000,false);
+    setTimeout(LiveUpdate,3000,false,bin_in_senario);
     return;
 }
 //map options 
@@ -157,9 +192,11 @@ var infowindow=[];
 var tr_infowindow=[];
 var hq_infowindow;
 var bin=[];
+var coords = [];
+var line;
 
 var bins_list=[];
 
-LiveUpdate(true);
+LiveUpdate(true,0);
 
 console.log("render done");
