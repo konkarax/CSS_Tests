@@ -1,8 +1,4 @@
-const {MongoClient} = require('mongodb');
 const { loadScenario, moveTruck } = require('./model/routes-model');
-const url="mongodb+srv://grt2000:grt2000st3@cluster0.4px4edr.mongodb.net/test";
-const client=new MongoClient(url);
-
 
 var idx=0;
 

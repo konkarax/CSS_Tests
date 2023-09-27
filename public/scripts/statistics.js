@@ -20,20 +20,15 @@ document.addEventListener('DOMContentLoaded', async function() {
     initializeCharts2(realDataLoadInput,realDataHumInput, realDataTempInput, predDataLoadInput, predDataHumInput, predDataTempInput)    
     
 
-    // const scenario2Radio = document.getElementById('scenario2');
-    // const scenario3Radio = document.getElementById('scenario3');
-
     const scenarioForm = document.getElementById('scenarioForm');    
-    scenarioForm.addEventListener('submit', async function(event) {
-        // event.preventDefault(); 
+    scenarioForm.addEventListener('submit', async function(event) { 
         
         const selectedScenario = document.querySelector('input[name="scenarioId"]:checked');
         
         if (selectedScenario) {
 
             const scenarioId = selectedScenario.value;           
-            scenarioForm.action = `/admin/statistics?scenarioId=${scenarioId}`;            
-            // console.log("id, href: ",scenarioId, scenarioForm.href)        
+            scenarioForm.action = `/admin/statistics?scenarioId=${scenarioId}`;                  
             scenarioForm.submit();
             
         }
@@ -197,8 +192,5 @@ document.addEventListener('DOMContentLoaded', async function() {
             }
         });
     }
-    
-
-
 
 });

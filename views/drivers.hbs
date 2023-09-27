@@ -1,0 +1,69 @@
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-md-3 sidebar">
+      <h3 >Dashboard</h3>
+      <ul>
+        <li><a href="/adminShowUsers">Drivers</a></li>
+        <li><a href="/scenario?scenarioId=1" > Scenario 1</a></li>
+        <li><a href="/scenario?scenarioId=2">Scenario 2</a></li>
+        <li><a href="/scenario?scenarioId=3">Scenario 3</a></li>
+      </ul>
+    </div>
+
+    <div class="col-md-9">
+        {{#if message}}
+        <div class="row mt-5">
+            <div class="col-12">
+            <div class="alert alert-primary" role="alert">
+                {{message}}
+            </div>
+            </div>
+        </div>
+        {{/if}}
+
+        <div>
+            <h3>Users Registered: {{users.length}}</h3>
+        </div>
+
+        {{#if users}}
+        <div class="table-responsive">
+            <table class="table table-hover">
+            <thead>
+                <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Scenario</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each users}}
+                <tr>
+                <td>{{this.username}}</td>
+                <td>{{this.email}}</td>
+                <td>{{this.phone}}</td>
+                <td>{{this.scenario}}</td>
+
+                </tr>
+                {{/each}}
+            </tbody>
+
+            </table>
+        </div>
+        <div class="row mt-2">
+            <div class="col">
+            <a class="btn btn-sm btn-secondary" href="/addUser">Add User</a>
+            </div>
+        </div>
+        {{/if}}
+
+        {{#unless users}}
+        <div class="row mt-5">
+            <div class="col">No Users Found!</div>
+        </div>
+        {{/unless}}
+
+        </div>
+    </div>
+</div>

@@ -62,8 +62,6 @@ router.get("/admin/statistics",
     UserController.checkIfAuthenticated,
     AdminController.checkIfAuthenticatedAdmin,
     AdminController.totalBins,
-    // AdminController.IntervalStatistic,
-    // RoutesController.getScenario,
     AdminController.getStatistics
     
     
@@ -74,7 +72,6 @@ router.get("/admin/predictions",
     AdminController.checkIfAuthenticatedAdmin,
     AdminController.totalBins,
     AdminController.getStatistics,
-    // RoutesController.getScenario,
     AdminController.getPredictions,
 
 )
@@ -88,21 +85,38 @@ router.get("/profile",
             res.redirect("/admin")
         }
     next()},
-    // UserController.userGetInfo,
-    // UserController.userShowBookings,
     (req, res) => {
         res.render("userProfile")
     }
 )
 
-    
-router.get("/addUser",     
+
+
+
+router.get("/adminShowUsers", 
+    UserController.checkIfAuthenticated,
+    AdminController.checkIfAuthenticatedAdmin,  
+    AdminController.showDrivers, 
+    (req,res) => {
+    res.render("drivers", {users: req.users})
+})
+
+router.get("/addUser", (req, res) => {
     UserController.checkIfAuthenticated,
     AdminController.checkIfAuthenticatedAdmin,
-    (req, res) => {
-        console.log("in addUser after authenticated")
     res.render("addDriver")
 })
+
+router.post("/doAddDriver",
+    UserController.checkIfAuthenticated,
+    AdminController.checkIfAuthenticatedAdmin,
+    AdminController.adminAddDriver,
+    AdminController.showDrivers,
+    (req, res) => {
+        console.log(req.body),
+        res.render("drivers", { message: req.message, users: req.users })
+    }
+)
 
 
 //----------------Scenarios----------------//
