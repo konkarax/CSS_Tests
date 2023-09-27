@@ -38,3 +38,6 @@ To run this project, please make sure you have the following prerequisites insta
   2. Navigate to the project directory (cd CSS_Tests)
   3. Start the Node.js application: (node server_website.js or nodemon server_website.js)
   4. The application should now be accessible at http://localhost:5000 in your web browser.
+  5. To log in to the application, use the following credentials:
+- **Username:** admin
+- **Password:** admin
