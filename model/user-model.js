@@ -8,8 +8,6 @@ async function login(username,password){
     const conn = await client.connect();
     const db = conn.db("waste_managment")
     console.log("in model: ", username,password)
-    // if (!username || !password)
-    //     throw new Error("Missing username or password")
     
     const collection = db.collection("users")
     // console.log("after collection")
@@ -20,17 +18,8 @@ async function login(username,password){
         throw new Error("User " + username + " doesn't exist")
     }
     console.log(password,user[0].password)
-    // const match = await bcrypt.compare(password, user[0].password)
-    // console.log(match)
     console.log("match")
         return user[0]
-    // if (match){
-    //     console.log("match")
-    //     return user[0]
-    // }
-    // else{
-    //     throw new Error("Wrong credentials")
-    // }
 }
 
 async function getUserInfo(username){

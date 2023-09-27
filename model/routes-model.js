@@ -182,6 +182,17 @@ async function moveTruck(target_list){
                     }
 
                 }
+                if (target_list[idx][2]==32){
+                    if (target_list.length==28){
+                    target_list.splice(idx+1,0,[38.255998, 21.741021,0]);
+                    target_list.splice(idx+1,0,[38.255518, 21.742799,0]);
+                    target_list.splice(idx+1,0,[38.256082, 21.743009,7]);
+                    target_list.splice(idx+1,0,[38.256526, 21.741228,0]);
+                    await collection_trucks.updateOne({_id:1},{$set:{route:target_list}});
+                }
+                    await collection_bins.updateOne({_id:'7'},{$set:{alert:true,temperature:50}});
+                }
+
                 
 
                 await new Promise(r => setTimeout(r, 1000));
