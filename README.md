@@ -2,8 +2,8 @@
 
 ## Project Overview
 
-This project is focused on Waste Management using Smart Transport. 
-It utilizes JavaScript for the main script, which incorporates HTML, Handlebars, CSS files, and some Python files. 
+This project is focused on Waste Management using Smart Devices. 
+It utilizes JavaScript for the main script, which incorporates HTML, Handlebars, CSS, and some Python files. 
 To run the project, you will need to have Node.js and Python with specific packages installed.
 
 ## Getting Started
@@ -12,7 +12,7 @@ To run this project, please make sure you have the following prerequisites insta
 
 ### JavaScript Prerequisites
 
-- Node.js or Nodemon
+- Node.js (and/or Nodemon)
 
 - Required Node.js packages:
   - Express
@@ -23,6 +23,9 @@ To run this project, please make sure you have the following prerequisites insta
   - Child Process
   - Path
   - Session
+  - Router
+
+Or the dependencies can be install all at once if you type "npm instal" in the command line on your terminal
 
 ### Python Prerequisites
 
